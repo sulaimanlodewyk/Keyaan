@@ -162,36 +162,38 @@
 
   <script>
     /**
-     * Recursively traverses any nested object/array structure to discover and 
-     * extract match records matching key patterns (date, opponent, runs).
+     * Traverses key structures and nested nodes in CricClubs stats JSON
+     * to extract all available match entries.
      */
     function extractMatchLogs(data) {
-      const matchList = [];
-      const seenMatches = new Set();
+      const matchMap = new Map();
 
       function traverse(obj) {
         if (!obj || typeof obj !== 'object') return;
 
-        // Extract key fields dynamically based on common CricClubs / custom naming conventions
+        // Common key lookup for CricClubs properties
         const date = obj.matchDate || obj.date || obj.MatchDate || obj.Date;
-        const opponent = obj.opponentTeam || obj.vs || obj.opponent || obj.Opponent || obj.OpponentTeam;
-        const runs = obj.runs ?? obj.runsScored ?? obj.Runs ?? obj.RunsScored;
+        const opponent = obj.opponentTeam || obj.vs || obj.opponent || obj.Opponent || obj.OpponentTeam || obj.team;
+        const runsRaw = obj.runs ?? obj.runsScored ?? obj.Runs ?? obj.RunsScored ?? obj.r;
+        const matchId = obj.matchId || obj.id || obj.MatchID || null;
 
-        if (date && opponent && runs !== undefined) {
-          const key = `${date}_${opponent}_${runs}`;
-          if (!seenMatches.has(key)) {
-            seenMatches.add(key);
-            matchList.push({
+        // Check if current node is a match log entry
+        if (date || opponent || matchId) {
+          const runs = runsRaw !== undefined && runsRaw !== null ? Number(runsRaw) : 0;
+          const key = matchId ? `id_${matchId}` : `${date}_${opponent}`;
+
+          if (date && opponent && !matchMap.has(key)) {
+            matchMap.set(key, {
               date: date,
               opponent: opponent,
-              runs: Number(runs),
-              dismissedBy: obj.dismissedBy || obj.howOut || obj.dismissal || obj.status || 'Not Out / Undefined',
-              matchId: obj.matchId || obj.id || 'N/A'
+              runs: runs,
+              dismissedBy: obj.dismissedBy || obj.howOut || obj.dismissal || obj.status || obj.out || 'Did Not Bat / Undefined',
+              matchId: matchId || 'N/A'
             });
           }
         }
 
-        // Recursively inspect arrays and nested objects
+        // Recursively walk through arrays and sub-objects
         if (Array.isArray(obj)) {
           obj.forEach(item => traverse(item));
         } else {
@@ -200,11 +202,11 @@
       }
 
       traverse(data);
-      return matchList;
+      return Array.from(matchMap.values());
     }
 
     /**
-     * Fetches JSON stats and renders the dashboard UI
+     * Fetches keyaan_cricclubs_stats.json and populates dashboard
      */
     async function initDashboard() {
       const loadingEl = document.getElementById('loading');
@@ -213,21 +215,21 @@
       try {
         const response = await fetch('./keyaan_cricclubs_stats.json');
         if (!response.ok) {
-          throw new Error(`Failed to load stats.json: ${response.statusText}`);
+          throw new Error(`Failed to load keyaan_cricclubs_stats.json: ${response.statusText}`);
         }
 
         const data = await response.json();
         const matches = extractMatchLogs(data);
 
         if (matches.length === 0) {
-          loadingEl.innerHTML = 'No match records found in stats.json.';
+          loadingEl.innerHTML = 'No match records found in keyaan_cricclubs_stats.json.';
           return;
         }
 
         // Sort matches chronologically (newest first)
         matches.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        // Aggregate statistics
+        // Calculate career aggregate stats
         let totalRuns = 0;
         let highestScore = 0;
         let dismissalCount = 0;
@@ -241,7 +243,8 @@
             highestScore = match.runs;
           }
 
-          const isNotOut = match.dismissedBy.toLowerCase().includes('not out');
+          const status = match.dismissedBy.toLowerCase();
+          const isNotOut = status.includes('not out') || status.includes('did not bat');
           if (!isNotOut) {
             dismissalCount++;
           }
@@ -260,7 +263,7 @@
         const totalMatches = matches.length;
         const avg = dismissalCount > 0 ? (totalRuns / dismissalCount).toFixed(2) : totalRuns.toFixed(2);
 
-        // Update Summary Cards
+        // Render Summary Cards
         document.getElementById('total-matches').textContent = totalMatches;
         document.getElementById('total-runs').textContent = totalRuns;
         document.getElementById('highest-score').textContent = highestScore;
