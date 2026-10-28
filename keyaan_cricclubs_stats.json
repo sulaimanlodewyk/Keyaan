@@ -2,13 +2,32 @@
   "player": {
     "name": "Keyaan Lodewyk",
     "playerRole": "Wicket Keeper",
-    "battingStyle": "Right Hand Batter (Top Order)",
-    "bowlingStyle": "Right Arm Off Spin",
-    "jerseyNumber": "12",
+    "battingStyle": "Top Order Batter",
+    "jerseyNumber": "10",
+    "currentTeam": "Sandton Tigers",
     "matches": 119,
     "runs": 1669,
-    "wickets": 6,
-    "currentTeam": "Sandton Tigers Blaze"
+    "wickets": 6
   },
-  "clubs": []
+  "clubs": [
+    {
+      "club": "Sandton Tigers",
+      "batting": [
+        {
+          "teamName": "U15 A",
+          "seriesType": "T20",
+          "matches": 12,
+          "innings": 10,
+          "runsScored": 240,
+          "highestScore": "73",
+          "average": "30.00",
+          "strikeRate": "115.5",
+          "fours": 28,
+          "sixers": 4,
+          "fifties": 1,
+          "hundreds": 0
+        }
+      ]
+    }
+  ]
 }
