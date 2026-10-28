@@ -1,14 +1,14 @@
 {
- "player": {
-  "name": "Keyaan Lodewyk",
-  "playerRole": "Wicket Keeper",
-  "battingStyle": "Right Hand Batter (Top Order)",
-  "bowlingStyle": "Right Arm Off Spin",
-  "jerseyNumber": "12",
-  "matches": 119,
-  "runs": 1669,
-  "wickets": 6,
-  "currentTeam": "Sandton Tigers Blaze"
- },
- "clubs": [ ... ]
+  "player": {
+    "name": "Keyaan Lodewyk",
+    "playerRole": "Wicket Keeper",
+    "battingStyle": "Right Hand Batter (Top Order)",
+    "bowlingStyle": "Right Arm Off Spin",
+    "jerseyNumber": "12",
+    "matches": 119,
+    "runs": 1669,
+    "wickets": 6,
+    "currentTeam": "Sandton Tigers Blaze"
+  },
+  "clubs": []
 }
