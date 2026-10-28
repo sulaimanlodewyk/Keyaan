@@ -211,7 +211,7 @@
       const contentEl = document.getElementById('content');
 
       try {
-        const response = await fetch('./stats.json');
+        const response = await fetch('./keyaan_cricclubs_stats.json');
         if (!response.ok) {
           throw new Error(`Failed to load stats.json: ${response.statusText}`);
         }
