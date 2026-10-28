@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CricClubs Player Dashboard</title>
+  <title>CricClubs Player Dashboard - Keyaan Lodewyk</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
@@ -36,14 +36,14 @@
         <!-- User Info -->
         <div class="flex items-center gap-4">
           <div class="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-400 flex items-center justify-center text-emerald-400 text-2xl font-bold">
-            JD
+            KL
           </div>
           <div>
             <div class="flex items-center gap-2">
-              <h2 id="playerName" class="text-2xl font-bold">John Doe</h2>
-              <span id="playerIDTag" class="text-xs bg-slate-700 text-slate-300 px-2 py-0.5 rounded font-mono">ID: CC-84920</span>
+              <h2 id="playerName" class="text-2xl font-bold">Keyaan Lodewyk</h2>
+              <span id="playerIDTag" class="text-xs bg-slate-700 text-slate-300 px-2 py-0.5 rounded font-mono">ID: 4493684</span>
             </div>
-            <p id="playerClub" class="text-slate-400 text-sm">Atlanta Strikers CC • All-Rounder</p>
+            <p id="playerClub" class="text-slate-400 text-sm">CricClubs League • All-Rounder</p>
           </div>
         </div>
 
@@ -51,19 +51,19 @@
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full md:w-auto">
           <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-700/50 text-center">
             <span class="text-xs text-slate-400 block">Matches</span>
-            <span id="statMatches" class="text-xl font-bold text-emerald-400">24</span>
+            <span id="statMatches" class="text-xl font-bold text-emerald-400">28</span>
           </div>
           <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-700/50 text-center">
             <span class="text-xs text-slate-400 block">Runs</span>
-            <span id="statRuns" class="text-xl font-bold text-white">582</span>
+            <span id="statRuns" class="text-xl font-bold text-white">642</span>
           </div>
           <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-700/50 text-center">
             <span class="text-xs text-slate-400 block">Wickets</span>
-            <span id="statWickets" class="text-xl font-bold text-emerald-400">18</span>
+            <span id="statWickets" class="text-xl font-bold text-emerald-400">22</span>
           </div>
           <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-700/50 text-center">
             <span class="text-xs text-slate-400 block">Batting Avg</span>
-            <span id="statAvg" class="text-xl font-bold text-white">32.3</span>
+            <span id="statAvg" class="text-xl font-bold text-white">35.6</span>
           </div>
         </div>
 
@@ -98,11 +98,11 @@
       <div class="space-y-3">
         <div>
           <label class="text-xs text-slate-400 block mb-1">CricClubs Player ID / Name</label>
-          <input type="text" id="inputPlayerID" value="John Doe (CC-84920)" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm focus:outline-none focus:border-emerald-400" />
+          <input type="text" id="inputPlayerID" value="Keyaan Lodewyk (4493684)" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm focus:outline-none focus:border-emerald-400" />
         </div>
         <div>
           <label class="text-xs text-slate-400 block mb-1">Club / Team Name</label>
-          <input type="text" id="inputClub" value="Atlanta Strikers CC" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm focus:outline-none focus:border-emerald-400" />
+          <input type="text" id="inputClub" value="CricClubs League" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm focus:outline-none focus:border-emerald-400" />
         </div>
       </div>
 
@@ -114,43 +114,50 @@
   </div>
 
   <script>
-    // Sample CricClubs matches associated with John Doe
+    // Target Player Metadata
+    let activePlayer = {
+      name: "Keyaan Lodewyk",
+      id: "4493684",
+      club: "CricClubs League"
+    };
+
+    // Matches associated with Keyaan Lodewyk
     const userMatches = [
       {
-        id: 101,
-        league: "Georgia Cricket League T20",
+        id: 201,
+        league: "CricClubs Premier T20 League",
         date: "Today",
         status: "LIVE",
-        teamA: "Atlanta Strikers CC",
-        scoreA: "148/4 (17.2 ov)",
-        teamB: "Savannah Kings CC",
-        scoreB: "145/8 (20.0 ov)",
-        userContribution: "John Doe: 42* (24) & 1/22 (4 ov)",
-        result: "Atlanta Strikers CC need 2 runs in 16 balls"
+        teamA: "Lions CC",
+        scoreA: "156/5 (18.1 ov)",
+        teamB: "Warriors CC",
+        scoreB: "152/7 (20.0 ov)",
+        userContribution: "Keyaan Lodewyk: 45* (26) & 2/20 (4.0 ov)",
+        result: "Lions CC need 5 runs in 11 balls"
       },
       {
-        id: 102,
-        league: "Georgia Premier League",
-        date: "Oct 24, 2026",
+        id: 202,
+        league: "CricClubs Championship Division",
+        date: "Oct 25, 2026",
         status: "COMPLETED",
-        teamA: "Atlanta Strikers CC",
-        scoreA: "182/6 (20.0 ov)",
-        teamB: "Metro Bulls CC",
-        scoreB: "154/9 (20.0 ov)",
-        userContribution: "John Doe: 68 (38) [Player of the Match]",
-        result: "Atlanta Strikers won by 28 runs"
+        teamA: "Lions CC",
+        scoreA: "178/4 (20.0 ov)",
+        teamB: "Strikers CC",
+        scoreB: "142/9 (20.0 ov)",
+        userContribution: "Keyaan Lodewyk: 52 (34) [Player of the Match]",
+        result: "Lions CC won by 36 runs"
       },
       {
-        id: 103,
-        league: "Fall T20 Cup",
-        date: "Oct 17, 2026",
+        id: 203,
+        league: "Autumn T20 Trophy",
+        date: "Oct 18, 2026",
         status: "COMPLETED",
-        teamA: "Alpharetta Lions",
-        scoreA: "135/10 (18.4 ov)",
-        teamB: "Atlanta Strikers CC",
-        scoreB: "138/3 (16.1 ov)",
-        userContribution: "John Doe: 3/15 (4.0 ov)",
-        result: "Atlanta Strikers won by 7 wickets"
+        teamA: "Titans CC",
+        scoreA: "128/10 (17.5 ov)",
+        teamB: "Lions CC",
+        scoreB: "132/2 (15.2 ov)",
+        userContribution: "Keyaan Lodewyk: 3/18 (4.0 ov) & 28* (16)",
+        result: "Lions CC won by 8 wickets"
       }
     ];
 
@@ -167,7 +174,7 @@
       });
 
       if (filtered.length === 0) {
-        container.innerHTML = `<div class="col-span-2 text-center py-12 text-slate-500">No matches found for this user.</div>`;
+        container.innerHTML = `<div class="col-span-2 text-center py-12 text-slate-500">No matches found for ${activePlayer.name}.</div>`;
         return;
       }
 
@@ -182,19 +189,19 @@
 
           <div class="space-y-2">
             <div class="flex justify-between items-center font-semibold">
-              <span class="${m.teamA.includes('Atlanta') ? 'text-emerald-400 font-bold' : ''}">${m.teamA}</span>
+              <span class="${m.teamA.includes('Lions') ? 'text-emerald-400 font-bold' : ''}">${m.teamA}</span>
               <span>${m.scoreA}</span>
             </div>
             <div class="flex justify-between items-center font-semibold">
-              <span class="${m.teamB.includes('Atlanta') ? 'text-emerald-400 font-bold' : ''}">${m.teamB}</span>
+              <span class="${m.teamB.includes('Lions') ? 'text-emerald-400 font-bold' : ''}">${m.teamB}</span>
               <span>${m.scoreB}</span>
             </div>
           </div>
 
-          <!-- Highlight User's Individual Performance -->
+          <!-- Highlight Keyaan Lodewyk's Performance -->
           <div class="bg-slate-900/80 rounded-lg p-2.5 border border-emerald-500/20 flex items-center gap-2 text-xs text-emerald-300">
             <i class="fa-solid fa-star text-amber-400"></i>
-            <span><strong>My Stats:</strong> ${m.userContribution}</span>
+            <span><strong>${activePlayer.name}'s Performance:</strong> ${m.userContribution}</span>
           </div>
 
           <p class="text-xs text-slate-400 italic">${m.result}</p>
@@ -221,11 +228,27 @@
     }
 
     function savePlayerSettings() {
-      const name = document.getElementById('inputPlayerID').value;
-      const club = document.getElementById('inputClub').value;
-      if (name) document.getElementById('playerName').innerText = name.split('(')[0].trim();
-      if (club) document.getElementById('playerClub').innerText = club;
+      const inputVal = document.getElementById('inputPlayerID').value;
+      const clubVal = document.getElementById('inputClub').value;
+
+      if (inputVal) {
+        const parsedName = inputVal.split('(')[0].trim();
+        const parsedId = inputVal.includes('(') ? inputVal.split('(')[1].replace(')', '').trim() : '4493684';
+        
+        activePlayer.name = parsedName;
+        activePlayer.id = parsedId;
+        
+        document.getElementById('playerName').innerText = activePlayer.name;
+        document.getElementById('playerIDTag').innerText = `ID: ${activePlayer.id}`;
+      }
+
+      if (clubVal) {
+        activePlayer.club = clubVal;
+        document.getElementById('playerClub').innerText = `${clubVal} • All-Rounder`;
+      }
+
       toggleSettingsModal();
+      renderMatches();
     }
 
     // Initial Render
