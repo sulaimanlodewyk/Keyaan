@@ -1,284 +1,135 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cricket Stats Dashboard</title>
-  <style>
-    :root {
-      --bg-color: #f4f6f8;
-      --card-bg: #ffffff;
-      --text-color: #333333;
-      --accent-color: #1b5e20;
-      --border-color: #dddddd;
-      --table-header-bg: #e8f5e9;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      margin: 0;
-      padding: 20px;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 25px;
-    }
-
-    h1 {
-      color: var(--accent-color);
-      margin-bottom: 5px;
-    }
-
-    .card {
-      background-color: var(--card-bg);
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      border: 1px solid var(--border-color);
-    }
-
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-      text-align: center;
-    }
-
-    .stat-box {
-      padding: 10px;
-      background: var(--bg-color);
-      border-radius: 6px;
-    }
-
-    .stat-box .number {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: var(--accent-color);
-    }
-
-    .stat-box .label {
-      font-size: 0.85rem;
-      color: #666;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-    }
-
-    th, td {
-      padding: 10px 12px;
-      text-align: left;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    th {
-      background-color: var(--table-header-bg);
-      color: var(--accent-color);
-    }
-
-    tr:hover {
-      background-color: #f9f9f9;
-    }
-
-    .loading {
-      text-align: center;
-      padding: 40px;
-      font-size: 1.2rem;
-      color: #666;
-    }
-
-    .error-msg {
-      color: #d32f2f;
-      text-align: center;
-      padding: 20px;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <header>
-      <h1>Cricket Career Overview</h1>
-      <p>Match-by-Match Statistics & Records</p>
-    </header>
-
-    <div id="loading" class="loading">Loading statistics...</div>
-
-    <div id="content" style="display: none;">
-      <!-- Career Overview Card -->
-      <div class="card">
-        <h2>Career Summary</h2>
-        <div class="summary-grid">
-          <div class="stat-box">
-            <div id="total-matches" class="number">0</div>
-            <div class="label">Matches</div>
-          </div>
-          <div class="stat-box">
-            <div id="total-runs" class="number">0</div>
-            <div class="label">Total Runs</div>
-          </div>
-          <div class="stat-box">
-            <div id="highest-score" class="number">0</div>
-            <div class="label">Highest Score</div>
-          </div>
-          <div class="stat-box">
-            <div id="batting-avg" class="number">0.00</div>
-            <div class="label">Average</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Match Logs Table -->
-      <div class="card">
-        <h2>Match Logs</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Opponent</th>
-              <th>Runs</th>
-              <th>Dismissal / Status</th>
-              <th>Match ID</th>
-            </tr>
-          </thead>
-          <tbody id="match-table-body">
-            <!-- Rows injected dynamically via JS -->
-          </tbody>
-        </table>
-      </div>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Keyaan Lodewyk - Cricket Stats</title><style>
+:root { --bg: #0f172a; --card: #1e293b; --text: #f8fafc; --muted: #94a3b8; --accent: #38bdf8; --border: #334155; }
+*, ::before, ::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { margin: 0; padding: 24px 16px; background: var(--bg); color: var(--text); font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+.wrap { max-width: 960px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+header { border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+h1 { margin: 0; font-size: 24px; font-weight: 700; }
+.sub { color: var(--muted); font-size: 14px; margin-top: 4px; }
+.kpis { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.kpi { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; text-align: center; min-width: 100px; flex: 1; }
+.kpi b { display: block; font-size: 20px; color: var(--accent); }
+.kpi span { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; }
+section { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 20px; }
+h2 { margin: 0 0 12px; font-size: 18px; border-bottom: 1px solid var(--line); padding-bottom: 8px; color: var(--accent); }
+.fmt { font-weight: 600; font-size: 14px; margin: 8px 0; }
+.yr { color: var(--dim); font-size: 13px; margin-padding: 2px 0 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { color: var(--dim); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--card); }
+td { padding: 8px 12px; border-bottom: 10px solid var(--line); }
+tr:hover td { background: #283548; }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+th.num { text-align: right; }
+hs td:first-child { color: var(--acc); font-weight: 600; }
+tr.grp td { background: var(--bg); color: var(--dim); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; section { border-color: #ccc; background: #fff; } }
+.note { color: var(--dim); font-size: 13px; margin-top: 8px; }
+.scroll { max-height: 420px; overflow-y: auto; border: 1px solid var(--line); border-radius: 8px; }
+.scroll table { font-size: 13.5px; }
+footer { text-align: center; color: var(--dim); font-size: 12px; margin-top: 8px; }
+@media print { body { background: #fff; color: #000; } .kpi, section { border-color: #ccc; background: #fff; } .kpi b { color: #000; } .kpi span { color: #555; } }
+</style></head><body>
+<div class="wrap">
+  <header>
+    <h1>Keyaan Lodewyk</h1>
+    <div class="sub">Wicket Keeper | Right Hand Batter (Top Order) | Right Arm Off Spin</div>
+    <div class="kpis">
+      <div class="kpi"><b>119</b><span>Matches</span></div>
+      <div class="kpi"><b>1669</b><span>Runs</span></div>
+      <div class="kpi"><b>14.03</b><span>Avg</span></div>
+      <div class="kpi"><b>88.54</b><span>SR</span></div>
+      <div class="kpi"><b>108.5</b><span>Overs</span></div>
+      <div class="kpi"><b>6</b><span>Wkts</span></div>
+      <div class="kpi"><b>27</b><span>Dis</span></div>
     </div>
-  </div>
+  </header>
 
-  <script>
-    /**
-     * Traverses key structures and nested nodes in CricClubs stats JSON
-     * to extract all available match entries.
-     */
-    function extractMatchLogs(data) {
-      const matchMap = new Map();
+  <section>
+    <h2>Lions Schools (Crawford Sandton)</h2>
+    <div class="fmt">Youth</div>
+    <div class="yr">2026: 15 m, 175 r, 10 off 131 b, avg 21.88, SR 133.59, HS 73/div>
+    <div class="yr">2025: 8 m, 132 r, HS 73</div>
+    <div class="yr">2024: 7 m, 108 r, HS 35</div>
+  </section>
 
-      function traverse(obj) {
-        if (!obj || typeof obj !== 'object') return;
+  <section>
+    <h2>Ballistic Cricket League (100-ball, Sandton Tigers Blaze)</h2>
+    <div class="fmt">Ten10</div>
+    <div class="yr">2026: 10 m, 175 r, 18 off 103 b, avg 17.50, SR 169.90, HS 55</div>
+    <div class="yr">2025: 8 m, 128 r, HS 55</div>
+  </section>
 
-        // Common key lookup for CricClubs properties
-        const date = obj.matchDate || obj.date || obj.MatchDate || obj.Date;
-        const opponent = obj.opponentTeam || obj.vs || obj.opponent || obj.Opponent || obj.OpponentTeam || obj.team;
-        const runsRaw = obj.runs ?? obj.runsScored ?? obj.Runs ?? obj.RunsScored ?? obj.r;
-        const matchId = obj.matchId || obj.id || obj.MatchID || null;
+  <section>
+    <h2>Montrose Night Challenge (Bryneven)</h2>
+    <div class="note">Super 8 Easter Cup 2026 (mBA U11, Ten10 / T8): Oct 9 vs Alex Hub / Oct 16 vs Dainfern, order unknown</div>
+  </section>
 
-        // Check if current node is a match log entry
-        if (date || opponent || matchId) {
-          const runs = runsRaw !== undefined && runsRaw !== null ? Number(runsRaw) : 0;
-          const key = matchId ? `id_${matchId}` : `${date}_${opponent}`;
+  <section>
+    <h2>Super 8 Easter Cup 2026 (mBA U11, Ten10)</h2>
+    <div class="fmt">Ten10</div>
+    <div class="yr">2026: 10 m, 38 r, 3 m off 38 b, avg 38.00, SR 126.67, HS 15</div>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Date</th><th>Opponent</th><th class="num">R</th><th class="num">B</th><th class="num">SR</th><th>How Out</th></tr>
+        </thead>
+        <tbody>
+          <!-- Match entries -->
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-          if (date && opponent && !matchMap.has(key)) {
-            matchMap.set(key, {
-              date: date,
-              opponent: opponent,
-              runs: runs,
-              dismissedBy: obj.dismissedBy || obj.howOut || obj.dismissal || obj.status || obj.out || 'Did Not Bat / Undefined',
-              matchId: matchId || 'N/A'
-            });
-          }
-        }
+  <section>
+    <h2>Steyn City (one-off, U9 2024)</h2>
+    <div class="fmt">Youth</div>
+    <div class="yr">2024: 1 m, 38 r, 1 in, 38 r off 27 b, avg 38.00, SR 140.74, HS 38</div>
+  </section>
 
-        // Recursively walk through arrays and sub-objects
-        if (Array.isArray(obj)) {
-          obj.forEach(item => traverse(item));
-        } else {
-          Object.values(obj).forEach(val => traverse(val));
-        }
-      }
+  <section>
+    <h2>Cover Drive Cricket School</h2>
+    <div class="fmt">Youth</div>
+    <div class="note">Note: all 5 series, transcribed from the cricclubs per-match records pages (Oct 2026); Each series:</div>
+  </section>
 
-      traverse(data);
-      return Array.from(matchMap.values());
-    }
+  <section>
+    <h2>National Premier League SA</h2>
+  </section>
 
-    /**
-     * Fetches keyaan_cricclubs_stats.json and populates dashboard
-     */
-    async function initDashboard() {
-      const loadingEl = document.getElementById('loading');
-      const contentEl = document.getElementById('content');
+  <section>
+    <h2>Delfos JNR Hundred</h2>
+  </section>
 
-      try {
-        const response = await fetch('./keyaan_cricclubs_stats.json');
-        if (!response.ok) {
-          throw new Error(`Failed to load keyaan_cricclubs_stats.json: ${response.statusText}`);
-        }
+  <section>
+    <h2>Randburg CCC Juniors</h2>
+  </section>
 
-        const data = await response.json();
-        const matches = extractMatchLogs(data);
+  <section>
+    <h2>D3 T10</h2>
+  </section>
 
-        if (matches.length === 0) {
-          loadingEl.innerHTML = 'No match records found in keyaan_cricclubs_stats.json.';
-          return;
-        }
+  <section>
+    <h2>Lions Club League 2026/27 (Exaze Sandton Tigers Blaze)</h2>
+    <div class="fmt">Youth</div>
+    <div class="note">note--bowling: 0.5 overs across all-series (no wickets); also keeps wicket</div>
+  </section>
 
-        // Sort matches chronologically (newest first)
-        matches.sort((a, b) => new Date(b.date) - new Date(a.date));
+  <section>
+    <h2>Other competitions (aggregated)</h2>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Club</th><th class="num">M</th><th class="num">R</th><th class="num">B</th><th class="num">SR</th><th>Highlights / Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Lions Schools (Crawford Sandton)</td><td class="num">30</td><td class="num">415</td><td class="num">-</td><td class="num">-</td><td>Batting avg ~19.8, HS 73; 5 caught, 1 bowled, 1 runout</td></tr>
+          <tr><td>Insights (Lions Schools)</td><td class="num">40</td><td class="num">552</td><td class="num">-</td><td class="num">-</td><td>Dismissals: 5 caught, 1 runout; 7 stumping</td></tr>
+          <tr><td>Bowling (Lions Schools)</td><td class="num">--</td><td class="num">--</td><td class="num">--</td><td class="num">--</td><td>47 balls, 2 wickets, 45 runs conceded (11 wides, 5 no-balls)</td></tr>
+          <tr><td>Keeper &amp; Lamp (Lions Schools)</td><td class="num">--</td><td class="num">--</td><td class="num">--</td><td class="num">--</td><td>4 overs, 2 wickets, 45 runs; wicketkeeping/fielding: 7 stumping</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-        // Calculate career aggregate stats
-        let totalRuns = 0;
-        let highestScore = 0;
-        let dismissalCount = 0;
-
-        const tableBody = document.getElementById('match-table-body');
-        tableBody.innerHTML = '';
-
-        matches.forEach(match => {
-          totalRuns += match.runs;
-          if (match.runs > highestScore) {
-            highestScore = match.runs;
-          }
-
-          const status = match.dismissedBy.toLowerCase();
-          const isNotOut = status.includes('not out') || status.includes('did not bat');
-          if (!isNotOut) {
-            dismissalCount++;
-          }
-
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td>${match.date}</td>
-            <td>${match.opponent}</td>
-            <td><strong>${match.runs}</strong></td>
-            <td>${match.dismissedBy}</td>
-            <td>${match.matchId}</td>
-          `;
-          tableBody.appendChild(tr);
-        });
-
-        const totalMatches = matches.length;
-        const avg = dismissalCount > 0 ? (totalRuns / dismissalCount).toFixed(2) : totalRuns.toFixed(2);
-
-        // Render Summary Cards
-        document.getElementById('total-matches').textContent = totalMatches;
-        document.getElementById('total-runs').textContent = totalRuns;
-        document.getElementById('highest-score').textContent = highestScore;
-        document.getElementById('batting-avg').textContent = avg;
-
-        loadingEl.style.display = 'none';
-        contentEl.style.display = 'block';
-
-      } catch (err) {
-        console.error(err);
-        loadingEl.innerHTML = `<div class="error-msg">Error loading dashboard: ${err.message}</div>`;
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', initDashboard);
-  </script>
-</body>
-</html>
+  <footer>Source: CricClubs network exports (parsed 2026-10-28)</footer>
+</div>
+</body></html>
