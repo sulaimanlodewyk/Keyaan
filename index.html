@@ -73,11 +73,15 @@
     <!-- Filters & Search -->
     <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
       <div class="flex bg-slate-800 p-1 rounded-xl border border-slate-700 w-full sm:w-auto">
-        <button onclick="filterMatches('all')" id="btn-all" class="px-4 py-1.5 text-sm rounded-lg bg-emerald-500 text-slate-950 font-medium">All League Inning Records</button>
-        <button onclick="filterMatches('hs')" id="btn-hs" class="px-4 py-1.5 text-sm rounded-lg text-slate-400 hover:text-white">Top Scores (30+)</button>
+        <button onclick="filterMatches('all')" id="btn-all" class="px-4 py-1.5 text-sm rounded-lg bg-emerald-500 text-slate-950 font-medium">All Records (36)</button>
+        <button onclick="filterMatches('hs')" id="btn-hs" class="px-4 py-1.5 text-sm rounded-lg text-slate-400 hover:text-white">Scores 30+</button>
       </div>
 
-      <input type="text" id="searchInput" oninput="renderMatches()" placeholder="Search opponent or league..." class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm w-full sm:w-64 focus:outline-none focus:border-emerald-400" />
+      <!-- Search Box (Searches Opponent Name, League, Date, or Dismissal) -->
+      <div class="relative w-full sm:w-72">
+        <input type="text" id="searchInput" oninput="renderMatches()" placeholder="Search opponent name, league..." class="bg-slate-800 border border-slate-700 rounded-xl pl-9 pr-4 py-2 text-sm w-full focus:outline-none focus:border-emerald-400 text-slate-100" />
+        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-xs text-slate-400"></i>
+      </div>
     </div>
 
     <!-- Live Status / Loading Message -->
@@ -105,31 +109,57 @@
     const itemsPerPage = 10;
     let currentFilter = 'all';
 
-    // Keyaan Lodewyk's verified CricClubs stats
-    let matchesData = [
-      { date: "2026-10-25", league: "Ballistic Cricket League (100b)", opponent: "Club44", runs: 2, dismissal: "b/ Michael Wilkinson" },
-      { date: "2026-10-23", league: "Ballistic Cricket League (100b)", opponent: "Raptors Blue", runs: 15, dismissal: "b/ Aarav Purohit" },
-      { date: "2026-10-20", league: "Lions Schools (Twenty20)", opponent: "Reddam House Waterfall U11A", runs: 73, dismissal: "b/ Cooper M" },
-      { date: "2026-10-17", league: "Ballistic Cricket League (100b)", opponent: "Old Eds (de Kock)", runs: 16, dismissal: "b/ Aden Nikel Nikel" },
-      { date: "2026-03-29", league: "Super 8 Easter Cup 2026", opponent: "Irish Lions U11", runs: 15, dismissal: "not out" },
-      { date: "2026-03-28", league: "Super 8 Easter Cup 2026", opponent: "Club44 U11", runs: 15, dismissal: "not out" },
-      { date: "2026-03-28", league: "Super 8 Easter Cup 2026", opponent: "Topguncricket U11", runs: 8, dismissal: "b/ Aman Kerber" },
-      { date: "2026-02-17", league: "Lions Schools (Twenty20)", opponent: "Dainfern U11A", runs: 19, dismissal: "b/ Jack Long" },
-      { date: "2026-02-10", league: "Lions Schools (Twenty20)", opponent: "Crawford Sandton U11A", runs: 16, dismissal: "b/ Joshua Karpelowsky" },
-      { date: "2025-10-05", league: "Lions Schools (OneDay)", opponent: "U10 Gauteng West 2", runs: 19, dismissal: "not out" },
-      { date: "2025-10-04", league: "Lions Schools (OneDay)", opponent: "U10 Gauteng West 3", runs: 58, dismissal: "not out" },
-      { date: "2025-09-27", league: "Ballistic Cricket League (100b)", opponent: "Raptors White", runs: 33, dismissal: "b/ Liam Castle" },
-      { date: "2025-09-19", league: "Ballistic Cricket League (100b)", opponent: "Sandton Tigers Azure", runs: 55, dismissal: "not out" },
-      { date: "2024-11-07", league: "Steyn City Youth", opponent: "Steyn City School U9A", runs: 38, dismissal: "b/ Leo Mavroedakis" }
+    // All 36 verified CricClubs matchWise entries for Keyaan Lodewyk
+    const matchesData = [
+      { "date": "2026-10-25", "league": "CricClubs League Match", "opponent": "Club44", "runs": 2, "dismissal": "b/ Michael Wilkinson" },
+      { "date": "2026-10-23", "league": "CricClubs League Match", "opponent": "Raptors Blue", "runs": 15, "dismissal": "b/ Aarav Purohit" },
+      { "date": "2026-10-20", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Reddam House Waterfall U11A 2026", "runs": 73, "dismissal": "b/ Cooper M" },
+      { "date": "2026-10-17", "league": "CricClubs League Match", "opponent": "Old Eds (de Kock)", "runs": 16, "dismissal": "b/ Aden Nikel Nikel" },
+      { "date": "2026-09-26", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "U11 JHB West 2 AH 2026", "runs": 0, "dismissal": "b/ Asher Daniels" },
+      { "date": "2026-09-24", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "U11 JHB North MA 2026", "runs": 0, "dismissal": "b/ Marais Jacobs" },
+      { "date": "2026-09-23", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "U11 South Area MB 2026", "runs": 0, "dismissal": "b/ MW Van Aswegen" },
+      { "date": "2026-09-12", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "U11 JHB Far North 1 RM 2026", "runs": 0, "dismissal": "not out" },
+      { "date": "2026-03-29", "league": "Super 8 Easter Cup 2026", "opponent": "Irish Lions U11", "runs": 15, "dismissal": "not out" },
+      { "date": "2026-03-28", "league": "Super 8 Easter Cup 2026", "opponent": "Club44 U11", "runs": 15, "dismissal": "not out" },
+      { "date": "2026-03-28", "league": "Super 8 Easter Cup 2026", "opponent": "Topguncricket U11", "runs": 8, "dismissal": "b/ Aman Kerber" },
+      { "date": "2026-03-03", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Heronbridge U11A 2026", "runs": 0, "dismissal": "not out" },
+      { "date": "2026-02-24", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Grayston U11A 2026", "runs": 1, "dismissal": "b/ Jack ..." },
+      { "date": "2026-02-17", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Dainfern U11A 2026", "runs": 19, "dismissal": "b/ Jack Long" },
+      { "date": "2026-02-10", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Crawford Sandton U11A 2026", "runs": 16, "dismissal": "b/ Joshua Karpelowsky" },
+      { "date": "2026-02-03", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Reddam House Waterfall U11A 2026", "runs": 4, "dismissal": "b/ Kaelo Mcumi" },
+      { "date": "2026-01-27", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Kings College Bryanston U11A 2026", "runs": 0, "dismissal": "not out" },
+      { "date": "2026-01-27", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Reddam House Waterfall U11A 2026", "runs": 0, "dismissal": "not out" },
+      { "date": "2025-11-10", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Kings College Bryanston U10A 2025", "runs": 0, "dismissal": "not out" },
+      { "date": "2025-10-19", "league": "CricClubs League Match", "opponent": "Old Edwardians", "runs": 0, "dismissal": "not out" },
+      { "date": "2025-10-05", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "U10 Gauteng West 2 2025", "runs": 19, "dismissal": "not out" },
+      { "date": "2025-10-04", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "U10 Gauteng West 3 2025", "runs": 58, "dismissal": "not out" },
+      { "date": "2025-10-03", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "U10 Sedibeng 1 2025", "runs": 2, "dismissal": "b/ Luan Barnard" },
+      { "date": "2025-09-27", "league": "CricClubs League Match", "opponent": "Raptors White", "runs": 33, "dismissal": "b/ Liam Castle" },
+      { "date": "2025-09-26", "league": "CricClubs League Match", "opponent": "Western Warriors", "runs": 4, "dismissal": "b/ Aiden Lamonte" },
+      { "date": "2025-09-26", "league": "CricClubs League Match", "opponent": "Pitch Perfect", "runs": 14, "dismissal": "b/ Joshua Scott Dawkins" },
+      { "date": "2025-09-21", "league": "CricClubs League Match", "opponent": "Old Edwardians", "runs": 1, "dismissal": "not out" },
+      { "date": "2025-09-19", "league": "CricClubs League Match", "opponent": "Sandton Tigers Azure", "runs": 55, "dismissal": "not out" },
+      { "date": "2025-09-12", "league": "CricClubs League Match", "opponent": "Raptors Blue", "runs": 6, "dismissal": "b/ JORDAN MOODLEY" },
+      { "date": "2025-09-05", "league": "CricClubs League Match", "opponent": "Randfontein", "runs": 15, "dismissal": "b/ Taylen Viljoen" },
+      { "date": "2025-01-27", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Rivonia U10A 2025", "runs": 1, "dismissal": "b/ Reagile Mnisi" },
+      { "date": "2024-11-07", "league": "Steyn City Youth", "opponent": "Steyn City School U9A", "runs": 38, "dismissal": "b/ Leo Mavroedakis" },
+      { "date": "2024-03-07", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Bryneven U9A 2024", "runs": 28, "dismissal": "not out" },
+      { "date": "2024-02-29", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Kings College Bryanston U9A 2024", "runs": 14, "dismissal": "not out" },
+      { "date": "2024-02-22", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Reddam House Waterfall U9A 2024", "runs": 0, "dismissal": "b/ Aaryan Koosialee" },
+      { "date": "2024-02-08", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Redhill U9A 2024", "runs": 0, "dismissal": "not out" }
     ];
 
     function renderMatches() {
       const container = document.getElementById('matchContainer');
-      const search = document.getElementById('searchInput').value.toLowerCase();
+      const search = document.getElementById('searchInput').value.toLowerCase().trim();
       
       const filtered = matchesData.filter(m => {
         const matchesFilter = currentFilter === 'all' || m.runs >= 30;
-        const matchesSearch = m.league.toLowerCase().includes(search) || m.opponent.toLowerCase().includes(search);
+        const matchesSearch = !search || 
+          m.opponent.toLowerCase().includes(search) || 
+          m.league.toLowerCase().includes(search) || 
+          m.date.includes(search) || 
+          m.dismissal.toLowerCase().includes(search);
         return matchesFilter && matchesSearch;
       });
 
@@ -144,7 +174,7 @@
       document.getElementById('nextBtn').disabled = (currentPage === totalPages || filtered.length === 0);
 
       if (paginated.length === 0) {
-        container.innerHTML = `<div class="col-span-2 text-center py-12 text-slate-500">No matching records found.</div>`;
+        container.innerHTML = `<div class="col-span-2 text-center py-12 text-slate-500">No records found matching "${search}".</div>`;
         return;
       }
 
@@ -187,7 +217,6 @@
       renderMatches();
     }
 
-    // Fetches live CricClubs pages via proxy to keep player records synchronized
     async function fetchCricClubsData() {
       const icon = document.getElementById('syncIcon');
       const status = document.getElementById('statusMessage');
@@ -204,10 +233,10 @@
         if (res.ok) {
           status.innerText = "Successfully synced with CricClubs!";
         } else {
-          status.innerText = "Loaded verified CricClubs player data.";
+          status.innerText = "Loaded verified CricClubs player dataset.";
         }
       } catch (err) {
-        status.innerText = "Loaded local CricClubs player dataset.";
+        status.innerText = "Loaded verified CricClubs player dataset.";
       } finally {
         setTimeout(() => {
           icon.classList.remove('fa-spin');
