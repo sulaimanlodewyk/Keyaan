@@ -9,7 +9,7 @@
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen font-sans">
 
-  <!-- Header Header / Profile Bar -->
+  <!-- Header / Profile Bar -->
   <header class="bg-slate-800 border-b border-slate-700 p-6 shadow-md">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-4">
@@ -57,7 +57,7 @@
       if (refreshIcon) refreshIcon.classList.add('fa-spin');
 
       try {
-        const response = await fetch(`./keyaan_cricclubs_stats.json?t=${new Date().getTime()}`);
+        const response = await fetch(`./stats.json?t=${new Date().getTime()}`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -74,7 +74,7 @@
         document.getElementById('contentContainer').innerHTML = `
           <div class="bg-rose-900/30 border border-rose-500/50 p-6 rounded-xl text-center text-rose-300">
             <i class="fa-solid fa-triangle-exclamation text-2xl mb-2"></i>
-            <p class="font-semibold">Unable to load keyaan_cricclubs_stats.json</p>
+            <p class="font-semibold">Unable to load stats.json</p>
           </div>
         `;
       } finally {
@@ -95,6 +95,49 @@
       renderContent();
     }
 
+    function extractMatchLogs(data) {
+      const matchList = [];
+      const seenMatches = new Set(); // To avoid duplicates across multiple arrays
+
+      const addMatches = (arr) => {
+        if (!Array.isArray(arr)) return;
+        arr.forEach(m => {
+          const date = m.matchDate || m.date || 'N/A';
+          const opponent = m.opponentTeam || m.vs || m.opponent || 'N/A';
+          const runs = m.runs ?? m.runsScored ?? '-';
+          const key = `${date}_${opponent}_${runs}`;
+
+          if (!seenMatches.has(key)) {
+            seenMatches.add(key);
+            matchList.push({
+              date: date,
+              opponent: opponent,
+              runs: runs,
+              dismissedBy: m.dismissedBy || 'Not Out / Undefined',
+              matchId: m.matchId || 'N/A'
+            });
+          }
+        });
+      };
+
+      // Aggregate matches from all matchWise keys in JSON
+      if (data.matchWise && data.matchWise.battingStats) addMatches(data.matchWise.battingStats);
+      if (data.lionsSchools && data.lionsSchools.matchWise) addMatches(data.lionsSchools.matchWise);
+      if (data.super8EasterCup2026 && data.super8EasterCup2026.matchWise) addMatches(data.super8EasterCup2026.matchWise);
+      if (data.steynCity && data.steynCity.matchWise) addMatches(data.steynCity.matchWise);
+      if (data.ballistic && data.ballistic.matchWise) addMatches(data.ballistic.matchWise);
+
+      // Check inside clubs array if present as array
+      if (Array.isArray(data.clubs)) {
+        data.clubs.forEach(c => {
+          if (Array.isArray(c.matches)) addMatches(c.matches);
+          if (Array.isArray(c.matchLogs)) addMatches(c.matchLogs);
+        });
+      }
+
+      return matchList;
+    }
+
     function renderContent() {
       if (!appData) return;
 
@@ -103,11 +146,9 @@
 
       let totalInnings = 0, totalFours = 0, totalSixes = 0, totalFifties = 0, totalHundreds = 0;
       let seriesList = [];
-      let matchList = [];
 
       if (appData.clubs) {
         appData.clubs.forEach(c => {
-          // Parse Aggregate Series Stats
           (c.batting || []).forEach(b => {
             totalInnings += (b.innings || 0);
             totalFours += (b.fours || 0);
@@ -127,23 +168,10 @@
               sixes: b.sixers || 0
             });
           });
-
-          // Parse Individual Match Logs
-          (c.matches || c.matchLogs || []).forEach(m => {
-            matchList.push({
-              date: m.matchDate || m.date || 'N/A',
-              opponent: m.opponent || m.against || 'N/A',
-              runs: m.runsScored ?? m.runs ?? '-',
-              balls: m.ballsFaced ?? m.balls ?? '-',
-              sr: m.strikeRate || '-',
-              fours: m.fours || 0,
-              sixes: m.sixers || m.sixes || 0,
-              wickets: m.wickets ?? '-',
-              result: m.result || m.matchResult || '-'
-            });
-          });
         });
       }
+
+      const matchList = extractMatchLogs(appData);
 
       if (activeView === 'overview') {
         container.innerHTML = `
@@ -238,11 +266,8 @@
                   <tr class="bg-slate-900/60 text-slate-400 text-xs uppercase tracking-wider border-b border-slate-700">
                     <th class="p-4">Date</th>
                     <th class="p-4">Opponent</th>
-                    <th class="p-4 text-center">Runs (Balls)</th>
-                    <th class="p-4 text-center">SR</th>
-                    <th class="p-4 text-center">4s / 6s</th>
-                    <th class="p-4 text-center">Wickets</th>
-                    <th class="p-4 text-center">Result</th>
+                    <th class="p-4 text-center">Runs Scored</th>
+                    <th class="p-4 text-center">Dismissal Details</th>
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-700 text-sm">
@@ -250,16 +275,13 @@
                     <tr class="hover:bg-slate-700/30 transition">
                       <td class="p-4 text-slate-400 text-xs">${m.date}</td>
                       <td class="p-4 font-semibold text-emerald-400">${m.opponent}</td>
-                      <td class="p-4 text-center font-bold text-white">${m.runs} <span class="text-xs text-slate-400">(${m.balls})</span></td>
-                      <td class="p-4 text-center">${m.sr}</td>
-                      <td class="p-4 text-center">${m.fours} / ${m.sixes}</td>
-                      <td class="p-4 text-center">${m.wickets}</td>
-                      <td class="p-4 text-center text-xs">${m.result}</td>
+                      <td class="p-4 text-center font-bold text-white">${m.runs}</td>
+                      <td class="p-4 text-center text-xs text-slate-300">${m.dismissedBy}</td>
                     </tr>
                   `).join('') : `
                     <tr>
-                      <td colspan="7" class="p-6 text-center text-slate-400">
-                        No individual match logs found in keyaan_cricclubs_stats.json.
+                      <td colspan="4" class="p-6 text-center text-slate-400">
+                        No individual match logs found in stats.json.
                       </td>
                     </tr>
                   `}
