@@ -1,34 +1,36 @@
-name: Auto Update Cricket Stats
+name: Auto Update Keyaan CricClubs Stats
 
 on:
   schedule:
-    # Runs every day at 00:00 UTC
-    - cron: '0 0 * * *'
-  # Allows you to run this manually anytime from the GitHub Actions tab
-  workflow_dispatch:
+    # Runs every night at 20:00 UTC (10 PM South Africa Standard Time)
+    - cron: '0 20 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
 
 jobs:
-  update-stats:
+  scrape-stats:
     runs-on: ubuntu-latest
 
     permissions:
       contents: write
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.11'
 
-      - name: Run Scraper Script
+      - name: Install Dependencies
+        run: pip install beautifulsoup4
+
+      - name: Run Scraper
         run: python update_stats.py
 
-      - name: Commit and Push if changes exist
+      - name: Commit and Push Changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action Bot"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add keyaan_cricclubs_stats.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update cricket stats [skip ci]" && git push)
+          git diff --staged --quiet || (git commit -m "Auto-update Keyaan stats from CricClubs [skip ci]" && git push)
