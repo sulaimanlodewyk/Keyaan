@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CricClubs Player Dashboard - Keyaan Lodewyk</title>
+  <title>Keyaan Lodewyk - CricClubs Career Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
@@ -18,12 +18,17 @@
         </div>
         <div>
           <h1 class="font-bold text-lg leading-tight">CricClubs <span class="text-emerald-400">Player Tracker</span></h1>
-          <p class="text-xs text-slate-400">Personal Performance & Match Hub</p>
+          <p class="text-xs text-slate-400">Live Career & Tournament Hub</p>
         </div>
       </div>
-      <button onclick="toggleSettingsModal()" class="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm flex items-center gap-2 transition">
-        <i class="fa-solid fa-user-gear text-emerald-400"></i> Change Player ID
-      </button>
+      <div class="flex items-center gap-2">
+        <button onclick="fetchLiveData()" class="px-3 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-lg text-sm flex items-center gap-2 transition">
+          <i class="fa-solid fa-rotate" id="refreshIcon"></i> Sync CricClubs Data
+        </button>
+        <button onclick="toggleSettingsModal()" class="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm flex items-center gap-2 transition">
+          <i class="fa-solid fa-user-gear text-emerald-400"></i> Settings
+        </button>
+      </div>
     </div>
   </header>
 
@@ -43,216 +48,52 @@
               <h2 id="playerName" class="text-2xl font-bold">Keyaan Lodewyk</h2>
               <span id="playerIDTag" class="text-xs bg-slate-700 text-slate-300 px-2 py-0.5 rounded font-mono">ID: 4493684</span>
             </div>
-            <p id="playerClub" class="text-slate-400 text-sm">CricClubs League • All-Rounder</p>
+            <p id="playerClub" class="text-slate-400 text-sm">Bryneven Primary / CG Lions • All-Rounder</p>
           </div>
         </div>
 
-        <!-- Quick Stats Grid -->
+        <!-- Career Stats Aggregated from 120+ Games -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full md:w-auto">
           <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-700/50 text-center">
-            <span class="text-xs text-slate-400 block">Matches</span>
-            <span id="statMatches" class="text-xl font-bold text-emerald-400">28</span>
+            <span class="text-xs text-slate-400 block">Total Matches</span>
+            <span id="statMatches" class="text-xl font-bold text-emerald-400">120</span>
           </div>
           <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-700/50 text-center">
-            <span class="text-xs text-slate-400 block">Runs</span>
-            <span id="statRuns" class="text-xl font-bold text-white">642</span>
+            <span class="text-xs text-slate-400 block">Total Runs</span>
+            <span id="statRuns" class="text-xl font-bold text-white">2,480</span>
           </div>
           <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-700/50 text-center">
-            <span class="text-xs text-slate-400 block">Wickets</span>
-            <span id="statWickets" class="text-xl font-bold text-emerald-400">22</span>
+            <span class="text-xs text-slate-400 block">Total Wickets</span>
+            <span id="statWickets" class="text-xl font-bold text-emerald-400">94</span>
           </div>
           <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-700/50 text-center">
-            <span class="text-xs text-slate-400 block">Batting Avg</span>
-            <span id="statAvg" class="text-xl font-bold text-white">35.6</span>
+            <span class="text-xs text-slate-400 block">High Score</span>
+            <span id="statAvg" class="text-xl font-bold text-white">84*</span>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- Filters & Search -->
-    <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-      <div class="flex bg-slate-800 p-1 rounded-xl border border-slate-700 w-full sm:w-auto">
-        <button onclick="filterMatches('all')" id="btn-all" class="px-4 py-1.5 text-sm rounded-lg bg-emerald-500 text-slate-950 font-medium">All User Matches</button>
-        <button onclick="filterMatches('live')" id="btn-live" class="px-4 py-1.5 text-sm rounded-lg text-slate-400 hover:text-white">Live Now</button>
+    <!-- Controls: Status Filter, Tournament Dropdown, Search -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+      
+      <!-- Status Tabs -->
+      <div class="flex bg-slate-800 p-1 rounded-xl border border-slate-700 w-full md:w-auto">
+        <button onclick="filterMatches('all')" id="btn-all" class="px-4 py-1.5 text-sm rounded-lg bg-emerald-500 text-slate-950 font-medium">All Matches (120)</button>
+        <button onclick="filterMatches('live')" id="btn-live" class="px-4 py-1.5 text-sm rounded-lg text-slate-400 hover:text-white">Live</button>
         <button onclick="filterMatches('completed')" id="btn-completed" class="px-4 py-1.5 text-sm rounded-lg text-slate-400 hover:text-white">Completed</button>
       </div>
 
-      <input type="text" id="searchInput" oninput="renderMatches()" placeholder="Search opponent or league..." class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm w-full sm:w-64 focus:outline-none focus:border-emerald-400" />
-    </div>
+      <!-- Filters & Search -->
+      <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+        <!-- Tournament Dropdown -->
+        <select id="tournamentFilter" onchange="renderMatches()" class="bg-slate-800 border border-slate-700 text-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-emerald-400">
+          <option value="ALL">All Tournaments</option>
+          <option value="Montrose Night Challenge">Montrose Night Challenge</option>
+          <option value="Primary Schools Colts">Primary Schools Colts</option>
+          <option value="Central Gauteng Indoor IPT">Central Gauteng Indoor IPT</option>
+          <option value="Far North Primary League">Far North Primary League</option>
+        </select>
 
-    <!-- Match List Grid -->
-    <div id="matchContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <!-- Dynamic match cards will load here -->
-    </div>
-
-  </main>
-
-  <!-- Player Settings Modal -->
-  <div id="settingsModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-    <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 max-w-md w-full space-y-4">
-      <h3 class="text-lg font-bold text-white flex items-center gap-2">
-        <i class="fa-solid fa-id-card text-emerald-400"></i> Configure CricClubs Player
-      </h3>
-      
-      <div class="space-y-3">
-        <div>
-          <label class="text-xs text-slate-400 block mb-1">CricClubs Player ID / Name</label>
-          <input type="text" id="inputPlayerID" value="Keyaan Lodewyk (4493684)" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm focus:outline-none focus:border-emerald-400" />
-        </div>
-        <div>
-          <label class="text-xs text-slate-400 block mb-1">Club / Team Name</label>
-          <input type="text" id="inputClub" value="CricClubs League" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm focus:outline-none focus:border-emerald-400" />
-        </div>
-      </div>
-
-      <div class="flex justify-end gap-2 pt-2">
-        <button onclick="toggleSettingsModal()" class="px-4 py-2 rounded-xl text-sm bg-slate-700 hover:bg-slate-600">Cancel</button>
-        <button onclick="savePlayerSettings()" class="px-4 py-2 rounded-xl text-sm bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold">Save & Refresh</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Target Player Metadata
-    let activePlayer = {
-      name: "Keyaan Lodewyk",
-      id: "4493684",
-      club: "CricClubs League"
-    };
-
-    // Matches associated with Keyaan Lodewyk
-    const userMatches = [
-      {
-        id: 201,
-        league: "CricClubs Premier T20 League",
-        date: "Today",
-        status: "LIVE",
-        teamA: "Lions CC",
-        scoreA: "156/5 (18.1 ov)",
-        teamB: "Warriors CC",
-        scoreB: "152/7 (20.0 ov)",
-        userContribution: "Keyaan Lodewyk: 45* (26) & 2/20 (4.0 ov)",
-        result: "Lions CC need 5 runs in 11 balls"
-      },
-      {
-        id: 202,
-        league: "CricClubs Championship Division",
-        date: "Oct 25, 2026",
-        status: "COMPLETED",
-        teamA: "Lions CC",
-        scoreA: "178/4 (20.0 ov)",
-        teamB: "Strikers CC",
-        scoreB: "142/9 (20.0 ov)",
-        userContribution: "Keyaan Lodewyk: 52 (34) [Player of the Match]",
-        result: "Lions CC won by 36 runs"
-      },
-      {
-        id: 203,
-        league: "Autumn T20 Trophy",
-        date: "Oct 18, 2026",
-        status: "COMPLETED",
-        teamA: "Titans CC",
-        scoreA: "128/10 (17.5 ov)",
-        teamB: "Lions CC",
-        scoreB: "132/2 (15.2 ov)",
-        userContribution: "Keyaan Lodewyk: 3/18 (4.0 ov) & 28* (16)",
-        result: "Lions CC won by 8 wickets"
-      }
-    ];
-
-    let currentFilter = 'all';
-
-    function renderMatches() {
-      const container = document.getElementById('matchContainer');
-      const search = document.getElementById('searchInput').value.toLowerCase();
-      
-      const filtered = userMatches.filter(m => {
-        const matchesFilter = currentFilter === 'all' || m.status.toLowerCase() === currentFilter;
-        const matchesSearch = m.league.toLowerCase().includes(search) || m.teamA.toLowerCase().includes(search) || m.teamB.toLowerCase().includes(search);
-        return matchesFilter && matchesSearch;
-      });
-
-      if (filtered.length === 0) {
-        container.innerHTML = `<div class="col-span-2 text-center py-12 text-slate-500">No matches found for ${activePlayer.name}.</div>`;
-        return;
-      }
-
-      container.innerHTML = filtered.map(m => `
-        <div class="bg-slate-800 rounded-xl p-5 border border-slate-700 hover:border-slate-600 transition space-y-3">
-          <div class="flex justify-between items-center text-xs text-slate-400">
-            <span>${m.league}</span>
-            <span class="px-2 py-0.5 rounded ${m.status === 'LIVE' ? 'bg-red-500/20 text-red-400 border border-red-500/30 font-bold' : 'bg-slate-700 text-slate-300'}">
-              ${m.status === 'LIVE' ? '• LIVE' : m.date}
-            </span>
-          </div>
-
-          <div class="space-y-2">
-            <div class="flex justify-between items-center font-semibold">
-              <span class="${m.teamA.includes('Lions') ? 'text-emerald-400 font-bold' : ''}">${m.teamA}</span>
-              <span>${m.scoreA}</span>
-            </div>
-            <div class="flex justify-between items-center font-semibold">
-              <span class="${m.teamB.includes('Lions') ? 'text-emerald-400 font-bold' : ''}">${m.teamB}</span>
-              <span>${m.scoreB}</span>
-            </div>
-          </div>
-
-          <!-- Highlight Keyaan Lodewyk's Performance -->
-          <div class="bg-slate-900/80 rounded-lg p-2.5 border border-emerald-500/20 flex items-center gap-2 text-xs text-emerald-300">
-            <i class="fa-solid fa-star text-amber-400"></i>
-            <span><strong>${activePlayer.name}'s Performance:</strong> ${m.userContribution}</span>
-          </div>
-
-          <p class="text-xs text-slate-400 italic">${m.result}</p>
-        </div>
-      `).join('');
-    }
-
-    function filterMatches(type) {
-      currentFilter = type;
-      ['all', 'live', 'completed'].forEach(t => {
-        const btn = document.getElementById(`btn-${t}`);
-        if (t === type) {
-          btn.className = "px-4 py-1.5 text-sm rounded-lg bg-emerald-500 text-slate-950 font-medium";
-        } else {
-          btn.className = "px-4 py-1.5 text-sm rounded-lg text-slate-400 hover:text-white";
-        }
-      });
-      renderMatches();
-    }
-
-    function toggleSettingsModal() {
-      document.getElementById('settingsModal').classList.toggle('hidden');
-      document.getElementById('settingsModal').classList.toggle('flex');
-    }
-
-    function savePlayerSettings() {
-      const inputVal = document.getElementById('inputPlayerID').value;
-      const clubVal = document.getElementById('inputClub').value;
-
-      if (inputVal) {
-        const parsedName = inputVal.split('(')[0].trim();
-        const parsedId = inputVal.includes('(') ? inputVal.split('(')[1].replace(')', '').trim() : '4493684';
-        
-        activePlayer.name = parsedName;
-        activePlayer.id = parsedId;
-        
-        document.getElementById('playerName').innerText = activePlayer.name;
-        document.getElementById('playerIDTag').innerText = `ID: ${activePlayer.id}`;
-      }
-
-      if (clubVal) {
-        activePlayer.club = clubVal;
-        document.getElementById('playerClub').innerText = `${clubVal} • All-Rounder`;
-      }
-
-      toggleSettingsModal();
-      renderMatches();
-    }
-
-    // Initial Render
-    renderMatches();
-  </script>
-</body>
-</html>
+        <input type="text" id="searchInput" oninput="renderMatches()" placeholder="Search opponent, venue..." class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm
