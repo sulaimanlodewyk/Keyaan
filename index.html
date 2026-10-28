@@ -57,7 +57,7 @@
       if (refreshIcon) refreshIcon.classList.add('fa-spin');
 
       try {
-        const response = await fetch(`./stats.json?t=${new Date().getTime()}`);
+        const response = await fetch(`./keyaan_cricclubs_stats.json?t=${new Date().getTime()}`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
