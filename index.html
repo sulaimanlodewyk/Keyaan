@@ -13,105 +13,150 @@
     <!-- Header -->
     <header class="bg-slate-800 rounded-xl p-6 shadow-xl border border-slate-700 flex flex-col md:flex-row items-center justify-between gap-4">
       <div>
-        <h1 class="text-3xl font-bold text-emerald-400">Keyaan Lodewyk</h1>
-        <p class="text-slate-400">Cricket Career Statistics & Match Analysis</p>
+        <h1 class="text-3xl font-bold text-emerald-400" id="player-name">Keyaan Lodewyk</h1>
+        <p class="text-slate-400" id="player-role">Wicket Keeper · Top Order Batter · Right Arm Off Spin</p>
       </div>
-      <div class="flex gap-2 bg-slate-900 p-1.5 rounded-lg border border-slate-700" id="viewSwitcher">
-        <button onclick="switchView('overview')" id="btn-overview" class="px-4 py-2 rounded-md font-medium transition text-sm bg-emerald-500 text-white">Overview</button>
-        <button onclick="switchView('series')" id="btn-series" class="px-4 py-2 rounded-md font-medium transition text-sm text-slate-400 hover:text-white">Series Breakdown</button>
-        <button onclick="switchView('matches')" id="btn-matches" class="px-4 py-2 rounded-md font-medium transition text-sm text-slate-400 hover:text-white">Match Log</button>
+      <div class="flex flex-col md:flex-row items-center gap-3">
+        <button onclick="loadStats()" id="btn-refresh" class="px-3 py-2 bg-slate-700 hover:bg-slate-600 text-emerald-400 font-semibold rounded-lg text-xs transition flex items-center gap-2 border border-slate-600">
+          <i class="fa-solid fa-rotate-right" id="refresh-icon"></i> Click to Refresh
+        </button>
+        <div class="flex gap-2 bg-slate-900 p-1.5 rounded-lg border border-slate-700" id="viewSwitcher">
+          <button onclick="switchView('overview')" id="btn-overview" class="px-4 py-2 rounded-md font-medium transition text-sm bg-emerald-500 text-white">Overview</button>
+          <button onclick="switchView('series')" id="btn-series" class="px-4 py-2 rounded-md font-medium transition text-sm text-slate-400 hover:text-white">Series Breakdown</button>
+          <button onclick="switchView('matches')" id="btn-matches" class="px-4 py-2 rounded-md font-medium transition text-sm text-slate-400 hover:text-white">Match Log</button>
+        </div>
       </div>
     </header>
 
     <!-- Main Content Container -->
-    <main id="contentContainer" class="space-y-6"></main>
+    <main id="contentContainer" class="space-y-6">
+      <div class="bg-slate-800 rounded-xl p-12 text-center text-slate-400 border border-slate-700">
+        <i class="fa-solid fa-spinner fa-spin text-3xl text-emerald-400 mb-3"></i>
+        <p>Loading Keyaan's CricClubs data...</p>
+      </div>
+    </main>
 
   </div>
 
   <script>
-    // Data Sets
-    const careerStats = {
-      matches: 24,
-      innings: 22,
-      runs: 412,
-      highestScore: "52*",
-      average: "25.75",
-      strikeRate: "88.4",
-      fours: 42,
-      sixes: 3,
-      fifties: 1,
-      thirties: 4
-    };
-
-    const matchLog = [
-      { date: "2025-02-15", opponent: "Pirates CC U11", venue: "Away", runs: 22, balls: 28, fours: 2, sixes: 0, status: "Not Out", result: "Won" },
-      { date: "2025-02-08", opponent: "Lions Academy", venue: "Home", runs: 52, balls: 45, fours: 7, sixes: 1, status: "Out", result: "Won" },
-      { date: "2025-02-01", opponent: "Old Eds U11", venue: "Away", runs: 11, balls: 14, fours: 1, sixes: 0, status: "Out", result: "Lost" },
-      { date: "2025-01-25", opponent: "Marks Park", venue: "Home", runs: 33, balls: 30, fours: 4, sixes: 0, status: "Out", result: "Won" },
-      { date: "2025-01-18", opponent: "Dainfern CC", venue: "Away", runs: 5, balls: 8, fours: 1, sixes: 0, status: "Out", result: "Lost" }
-    ];
-
-    const seriesBreakdown = [
-      { league: "Gauteng Junior League — U11 2024/25", matches: 12, runs: 245, hs: "52*", avg: "27.2", sr: "91.2", fours: 28, sixes: 2 },
-      { league: "Joburg Winter League — U11 2024", matches: 10, runs: 134, hs: "38", avg: "22.3", sr: "81.2", fours: 11, sixes: 1 },
-      { league: "Montrose Night Challenge — U11 2025", matches: 2, runs: 33, hs: "22", avg: "16.5", sr: "80.0", fours: 3, sixes: 0 }
-    ];
-
     let activeView = 'overview';
+    let appData = null;
+
+    async function loadStats() {
+      const refreshIcon = document.getElementById('refresh-icon');
+      if (refreshIcon) refreshIcon.classList.add('fa-spin');
+
+      try {
+        // Cache-busting parameter (?t=...) ensures fresh data when pushed to GitHub
+        const response = await fetch(`./keyaan_cricclubs_stats.json?t=${new Date().getTime()}`);
+        appData = await response.json();
+
+        // Update header player metadata
+        if (appData.player) {
+          document.getElementById('player-name').innerText = appData.player.name || "Keyaan Lodewyk";
+          document.getElementById('player-role').innerText = `${appData.player.playerRole} · ${appData.player.battingStyle} · #${appData.player.jerseyNumber}`;
+        }
+
+        renderContent();
+      } catch (err) {
+        console.error("Error loading JSON:", err);
+        document.getElementById('contentContainer').innerHTML = `
+          <div class="bg-rose-900/30 border border-rose-500/50 p-6 rounded-xl text-center text-rose-300">
+            <i class="fa-solid fa-triangle-exclamation text-2xl mb-2"></i>
+            <p class="font-semibold">Unable to load keyaan_cricclubs_stats.json</p>
+            <p class="text-xs text-slate-400 mt-1">Please make sure keyaan_cricclubs_stats.json is placed in the exact same GitHub folder as index.html.</p>
+          </div>
+        `;
+      } finally {
+        if (refreshIcon) refreshIcon.classList.remove('fa-spin');
+      }
+    }
 
     function switchView(view) {
       activeView = view;
       ['overview', 'series', 'matches'].forEach(v => {
         const btn = document.getElementById(`btn-${v}`);
-        if (v === view) {
-          btn.className = "px-4 py-2 rounded-md font-medium transition text-sm bg-emerald-500 text-white";
-        } else {
-          btn.className = "px-4 py-2 rounded-md font-medium transition text-sm text-slate-400 hover:text-white";
+        if (btn) {
+          btn.className = (v === view) 
+            ? "px-4 py-2 rounded-md font-medium transition text-sm bg-emerald-500 text-white" 
+            : "px-4 py-2 rounded-md font-medium transition text-sm text-slate-400 hover:text-white";
         }
       });
       renderContent();
     }
 
     function renderContent() {
+      if (!appData) return;
+
       const container = document.getElementById('contentContainer');
+      const p = appData.player || {};
+
+      // Aggregate totals across all series/clubs
+      let totalInnings = 0, totalFours = 0, totalSixes = 0, totalFifties = 0, totalHundreds = 0;
+      let seriesList = [];
+
+      if (appData.clubs) {
+        appData.clubs.forEach(c => {
+          (c.batting || []).forEach(b => {
+            totalInnings += (b.innings || 0);
+            totalFours += (b.fours || 0);
+            totalSixes += (b.sixers || 0);
+            totalFifties += (b.fifties || 0);
+            totalHundreds += (b.hundreds || 0);
+
+            seriesList.push({
+              league: `${c.club} (${b.teamName})`,
+              format: b.seriesType || 'T20',
+              matches: b.matches || 0,
+              runs: b.runsScored || 0,
+              hs: b.highestScore || '-',
+              avg: b.average || '-',
+              sr: b.strikeRate || '-',
+              fours: b.fours || 0,
+              sixes: b.sixers || 0
+            });
+          });
+        });
+      }
+
       if (activeView === 'overview') {
         container.innerHTML = `
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
               <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Total Runs</span>
-              <p class="text-3xl font-extrabold text-emerald-400 mt-1">${careerStats.runs}</p>
+              <p class="text-3xl font-extrabold text-emerald-400 mt-1">${p.runs || 0}</p>
             </div>
             <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
-              <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Batting Average</span>
-              <p class="text-3xl font-extrabold text-emerald-400 mt-1">${careerStats.average}</p>
+              <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Total Matches</span>
+              <p class="text-3xl font-extrabold text-emerald-400 mt-1">${p.matches || 0}</p>
             </div>
             <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
-              <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Highest Score</span>
-              <p class="text-3xl font-extrabold text-emerald-400 mt-1">${careerStats.highestScore}</p>
+              <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Current Team</span>
+              <p class="text-xl font-bold text-emerald-400 mt-2 truncate">${p.currentTeam || 'Sandton Tigers'}</p>
             </div>
             <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
-              <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Strike Rate</span>
-              <p class="text-3xl font-extrabold text-emerald-400 mt-1">${careerStats.strikeRate}</p>
+              <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Total Wickets</span>
+              <p class="text-3xl font-extrabold text-emerald-400 mt-1">${p.wickets || 0}</p>
             </div>
           </div>
 
           <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 space-y-4">
-            <h2 class="text-xl font-bold text-white">Career Highlights</h2>
+            <h2 class="text-xl font-bold text-white">Career Highlights (${p.matches} Matches)</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
               <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/50">
-                <p class="text-2xl font-bold text-white">${careerStats.matches}</p>
-                <p class="text-xs text-slate-400">Matches Played</p>
+                <p class="text-2xl font-bold text-white">${totalInnings}</p>
+                <p class="text-xs text-slate-400">Total Innings</p>
               </div>
               <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/50">
-                <p class="text-2xl font-bold text-white">${careerStats.fifties}</p>
-                <p class="text-xs text-slate-400">50s Scored</p>
+                <p class="text-2xl font-bold text-white">${totalHundreds} / ${totalFifties}</p>
+                <p class="text-xs text-slate-400">100s / 50s Scored</p>
               </div>
               <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/50">
-                <p class="text-2xl font-bold text-white">${careerStats.fours}</p>
+                <p class="text-2xl font-bold text-white">${totalFours}</p>
                 <p class="text-xs text-slate-400">Boundaries (4s)</p>
               </div>
               <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/50">
-                <p class="text-2xl font-bold text-white">${careerStats.sixes}</p>
+                <p class="text-2xl font-bold text-white">${totalSixes}</p>
                 <p class="text-xs text-slate-400">Sixes (6s)</p>
               </div>
             </div>
@@ -121,13 +166,14 @@
         container.innerHTML = `
           <div class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden shadow-xl">
             <div class="p-6 border-b border-slate-700">
-              <h2 class="text-xl font-bold text-white">Series & Tournament Breakdown</h2>
+              <h2 class="text-xl font-bold text-white">Complete Series & League Breakdown (${seriesList.length} Competitions)</h2>
             </div>
             <div class="overflow-x-auto">
               <table class="w-full text-left border-collapse">
                 <thead>
                   <tr class="bg-slate-900/60 text-slate-400 text-xs uppercase tracking-wider border-b border-slate-700">
-                    <th class="p-4">Tournament / League</th>
+                    <th class="p-4">Tournament / Club</th>
+                    <th class="p-4 text-center">Format</th>
                     <th class="p-4 text-center">Matches</th>
                     <th class="p-4 text-center">Runs</th>
                     <th class="p-4 text-center">HS</th>
@@ -137,9 +183,10 @@
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-700 text-sm">
-                  ${seriesBreakdown.map(s => `
+                  ${seriesList.map(s => `
                     <tr class="hover:bg-slate-700/30 transition">
                       <td class="p-4 font-semibold text-emerald-400">${s.league}</td>
+                      <td class="p-4 text-center text-slate-400 text-xs">${s.format}</td>
                       <td class="p-4 text-center">${s.matches}</td>
                       <td class="p-4 text-center font-bold text-white">${s.runs}</td>
                       <td class="p-4 text-center">${s.hs}</td>
@@ -155,47 +202,18 @@
         `;
       } else if (activeView === 'matches') {
         container.innerHTML = `
-          <div class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden shadow-xl">
-            <div class="p-6 border-b border-slate-700">
-              <h2 class="text-xl font-bold text-white">Match Log</h2>
-            </div>
-            <div class="overflow-x-auto">
-              <table class="w-full text-left border-collapse">
-                <thead>
-                  <tr class="bg-slate-900/60 text-slate-400 text-xs uppercase tracking-wider border-b border-slate-700">
-                    <th class="p-4">Date</th>
-                    <th class="p-4">Opponent</th>
-                    <th class="p-4 text-center">Venue</th>
-                    <th class="p-4 text-center">Runs (Balls)</th>
-                    <th class="p-4 text-center">Boundaries</th>
-                    <th class="p-4 text-center">Dismissal</th>
-                    <th class="p-4 text-center">Result</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-700 text-sm">
-                  ${matchLog.map(m => `
-                    <tr class="hover:bg-slate-700/30 transition">
-                      <td class="p-4 text-slate-400">${m.date}</td>
-                      <td class="p-4 font-semibold text-white">${m.opponent}</td>
-                      <td class="p-4 text-center text-slate-400">${m.venue}</td>
-                      <td class="p-4 text-center font-bold text-emerald-400">${m.runs} <span class="text-xs text-slate-400 font-normal">(${m.balls})</span></td>
-                      <td class="p-4 text-center">${m.fours} x 4s, ${m.sixes} x 6s</td>
-                      <td class="p-4 text-center"><span class="px-2.5 py-1 rounded-full text-xs font-semibold ${m.status === 'Not Out' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-slate-700 text-slate-300'}">${m.status}</span></td>
-                      <td class="p-4 text-center font-bold ${m.result === 'Won' ? 'text-emerald-400' : 'text-rose-400'}">${m.result}</td>
-                    </tr>
-                  `).join('')}
-                </tbody>
-              </table>
-            </div>
+          <div class="bg-slate-800 rounded-xl border border-slate-700 p-6 shadow-xl text-center space-y-3">
+            <h2 class="text-xl font-bold text-white">Full Match-by-Match Logs</h2>
+            <p class="text-slate-400 text-sm max-w-xl mx-auto">
+              Keyaan has competed in <strong class="text-emerald-400">${p.matches} matches</strong> across 12 clubs and academies. All competition averages, boundary counts, and top scores are loaded directly from CricClubs.
+            </p>
           </div>
         `;
       }
     }
 
-    // Initialize rendering on load
-    document.addEventListener('DOMContentLoaded', () => {
-      renderContent();
-    });
+    // Load data directly on startup
+    document.addEventListener('DOMContentLoaded', loadStats);
   </script>
 </body>
 </html>
