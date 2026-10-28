@@ -47,8 +47,10 @@
       if (refreshIcon) refreshIcon.classList.add('fa-spin');
 
       try {
-        // Cache-busting parameter (?t=...) ensures fresh data when pushed to GitHub
         const response = await fetch(`./keyaan_cricclubs_stats.json?t=${new Date().getTime()}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         appData = await response.json();
 
         // Update header player metadata
@@ -64,7 +66,7 @@
           <div class="bg-rose-900/30 border border-rose-500/50 p-6 rounded-xl text-center text-rose-300">
             <i class="fa-solid fa-triangle-exclamation text-2xl mb-2"></i>
             <p class="font-semibold">Unable to load keyaan_cricclubs_stats.json</p>
-            <p class="text-xs text-slate-400 mt-1">Please make sure keyaan_cricclubs_stats.json is placed in the exact same GitHub folder as index.html.</p>
+            <p class="text-xs text-slate-400 mt-1">Please ensure the JSON file is valid and served via a local web server (e.g. Live Server) or hosted on GitHub Pages.</p>
           </div>
         `;
       } finally {
@@ -91,7 +93,6 @@
       const container = document.getElementById('contentContainer');
       const p = appData.player || {};
 
-      // Aggregate totals across all series/clubs
       let totalInnings = 0, totalFours = 0, totalSixes = 0, totalFifties = 0, totalHundreds = 0;
       let seriesList = [];
 
@@ -212,7 +213,6 @@
       }
     }
 
-    // Load data directly on startup
     document.addEventListener('DOMContentLoaded', loadStats);
   </script>
 </body>
