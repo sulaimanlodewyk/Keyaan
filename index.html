@@ -18,7 +18,7 @@
         </div>
         <div>
           <h1 class="font-bold text-lg leading-tight">CricClubs <span class="text-emerald-400">Player Hub</span></h1>
-          <p class="text-xs text-slate-400">Live Player Tracker</p>
+          <p class="text-xs text-slate-400">Live Career & Match Tracker</p>
         </div>
       </div>
       <button onclick="fetchCricClubsData()" class="px-3 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-lg text-sm flex items-center gap-2 transition">
@@ -70,30 +70,30 @@
       </div>
     </section>
 
-    <!-- Filters & Search -->
+    <!-- Navigation View Mode Tabs -->
     <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
       <div class="flex bg-slate-800 p-1 rounded-xl border border-slate-700 w-full sm:w-auto">
-        <button onclick="filterMatches('all')" id="btn-all" class="px-4 py-1.5 text-sm rounded-lg bg-emerald-500 text-slate-950 font-medium">All Records (36)</button>
-        <button onclick="filterMatches('hs')" id="btn-hs" class="px-4 py-1.5 text-sm rounded-lg text-slate-400 hover:text-white">Scores 30+</button>
+        <button onclick="switchView('matches')" id="viewBtnMatches" class="px-4 py-1.5 text-sm rounded-lg bg-emerald-500 text-slate-950 font-medium">Detailed Matches (36)</button>
+        <button onclick="switchView('series')" id="viewBtnSeries" class="px-4 py-1.5 text-sm rounded-lg text-slate-400 hover:text-white">Tournament Series (~120 Matches)</button>
       </div>
 
-      <!-- Search Box (Searches Opponent Name, League, Date, or Dismissal) -->
-      <div class="relative w-full sm:w-72">
-        <input type="text" id="searchInput" oninput="renderMatches()" placeholder="Search opponent name, league..." class="bg-slate-800 border border-slate-700 rounded-xl pl-9 pr-4 py-2 text-sm w-full focus:outline-none focus:border-emerald-400 text-slate-100" />
+      <!-- Search Box -->
+      <div class="relative w-full sm:w-80">
+        <input type="text" id="searchInput" oninput="renderContent()" placeholder="Search opponent, league, or team..." class="bg-slate-800 border border-slate-700 rounded-xl pl-9 pr-4 py-2 text-sm w-full focus:outline-none focus:border-emerald-400 text-slate-100" />
         <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-xs text-slate-400"></i>
       </div>
     </div>
 
-    <!-- Live Status / Loading Message -->
+    <!-- Live Status Message -->
     <div id="statusMessage" class="hidden text-xs text-center text-emerald-400 py-1"></div>
 
-    <!-- Match List Grid -->
-    <div id="matchContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <!-- Inning cards load here -->
+    <!-- Dynamic Content Container -->
+    <div id="contentContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Loaded dynamically via JS -->
     </div>
 
     <!-- Pagination -->
-    <div class="flex justify-between items-center bg-slate-800 px-4 py-3 rounded-xl border border-slate-700">
+    <div id="paginationBar" class="flex justify-between items-center bg-slate-800 px-4 py-3 rounded-xl border border-slate-700">
       <span id="pageInfo" class="text-xs text-slate-400">Showing 1-10</span>
       <div class="flex gap-2">
         <button id="prevBtn" onclick="changePage(-1)" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded text-xs disabled:opacity-50">Previous</button>
@@ -105,11 +105,11 @@
 
   <script>
     const PLAYER_ID = "4493684";
+    let activeView = 'matches';
     let currentPage = 1;
     const itemsPerPage = 10;
-    let currentFilter = 'all';
 
-    // All 36 verified CricClubs matchWise entries for Keyaan Lodewyk
+    // 1. All 36 detailed match-wise scorecards
     const matchesData = [
       { "date": "2026-10-25", "league": "CricClubs League Match", "opponent": "Club44", "runs": 2, "dismissal": "b/ Michael Wilkinson" },
       { "date": "2026-10-23", "league": "CricClubs League Match", "opponent": "Raptors Blue", "runs": 15, "dismissal": "b/ Aarav Purohit" },
@@ -149,104 +149,21 @@
       { "date": "2024-02-08", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Redhill U9A 2024", "runs": 0, "dismissal": "not out" }
     ];
 
-    function renderMatches() {
-      const container = document.getElementById('matchContainer');
-      const search = document.getElementById('searchInput').value.toLowerCase().trim();
-      
-      const filtered = matchesData.filter(m => {
-        const matchesFilter = currentFilter === 'all' || m.runs >= 30;
-        const matchesSearch = !search || 
-          m.opponent.toLowerCase().includes(search) || 
-          m.league.toLowerCase().includes(search) || 
-          m.date.includes(search) || 
-          m.dismissal.toLowerCase().includes(search);
-        return matchesFilter && matchesSearch;
-      });
-
-      const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
-      if (currentPage > totalPages) currentPage = totalPages;
-
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      const paginated = filtered.slice(startIndex, startIndex + itemsPerPage);
-
-      document.getElementById('pageInfo').innerText = `Showing ${filtered.length ? startIndex + 1 : 0}-${Math.min(startIndex + itemsPerPage, filtered.length)} of ${filtered.length} records`;
-      document.getElementById('prevBtn').disabled = (currentPage === 1);
-      document.getElementById('nextBtn').disabled = (currentPage === totalPages || filtered.length === 0);
-
-      if (paginated.length === 0) {
-        container.innerHTML = `<div class="col-span-2 text-center py-12 text-slate-500">No records found matching "${search}".</div>`;
-        return;
-      }
-
-      container.innerHTML = paginated.map(m => `
-        <div class="bg-slate-800 rounded-xl p-5 border border-slate-700 hover:border-slate-600 transition space-y-3">
-          <div class="flex justify-between items-center text-xs text-slate-400">
-            <span class="text-emerald-400 font-medium">${m.league}</span>
-            <span class="bg-slate-700 text-slate-300 px-2 py-0.5 rounded">${m.date}</span>
-          </div>
-
-          <div class="flex justify-between items-center">
-            <div>
-              <p class="text-xs text-slate-400">vs Opponent</p>
-              <p class="font-bold text-slate-100">${m.opponent}</p>
-            </div>
-            <div class="text-right">
-              <span class="text-2xl font-black ${m.runs >= 30 ? 'text-amber-400' : 'text-emerald-400'}">${m.runs}</span>
-              <span class="text-xs text-slate-400 block">${m.runs === 1 ? 'run' : 'runs'}</span>
-            </div>
-          </div>
-
-          <div class="bg-slate-900/80 rounded-lg p-2 border border-slate-700/50 flex items-center gap-2 text-xs text-slate-300">
-            <i class="fa-solid fa-circle-info text-emerald-400"></i>
-            <span><strong>Dismissal:</strong> ${m.dismissal}</span>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function changePage(dir) {
-      currentPage += dir;
-      renderMatches();
-    }
-
-    function filterMatches(type) {
-      currentFilter = type;
-      currentPage = 1;
-      document.getElementById('btn-all').className = type === 'all' ? "px-4 py-1.5 text-sm rounded-lg bg-emerald-500 text-slate-950 font-medium" : "px-4 py-1.5 text-sm rounded-lg text-slate-400 hover:text-white";
-      document.getElementById('btn-hs').className = type === 'hs' ? "px-4 py-1.5 text-sm rounded-lg bg-emerald-500 text-slate-950 font-medium" : "px-4 py-1.5 text-sm rounded-lg text-slate-400 hover:text-white";
-      renderMatches();
-    }
-
-    async function fetchCricClubsData() {
-      const icon = document.getElementById('syncIcon');
-      const status = document.getElementById('statusMessage');
-      
-      icon.classList.add('fa-spin');
-      status.classList.remove('hidden');
-      status.innerText = "Syncing live player profile from CricClubs...";
-
-      try {
-        const profileUrl = `https://www.cricclubs.com/viewPlayerStats.do?playerId=${PLAYER_ID}`;
-        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(profileUrl)}`;
-        
-        const res = await fetch(proxyUrl);
-        if (res.ok) {
-          status.innerText = "Successfully synced with CricClubs!";
-        } else {
-          status.innerText = "Loaded verified CricClubs player dataset.";
-        }
-      } catch (err) {
-        status.innerText = "Loaded verified CricClubs player dataset.";
-      } finally {
-        setTimeout(() => {
-          icon.classList.remove('fa-spin');
-          status.classList.add('hidden');
-        }, 1200);
-      }
-    }
-
-    // Initial render
-    renderMatches();
-  </script>
-</body>
-</html>
+    // 2. All 20 Tournament Series covering ~120 total matches
+    const seriesBreakdown = [
+      { "league": "Cover Drive Cricket School — Africa Cup Season 4 u/11 2026", "matches": 6, "runs": 164, "hs": 102, "avg": "54.67", "sr": "111.56", "fours": 24, "sixes": 3 },
+      { "league": "Cover Drive Cricket School — Africa Cup Season 3 U/11 2025", "matches": 2, "runs": 40, "hs": 40, "avg": "-", "sr": "81.63", "fours": 4, "sixes": 1 },
+      { "league": "Cover Drive Cricket School — Africa Cup Season 3 U/10 2025", "matches": 7, "runs": 213, "hs": 64, "avg": "71.0", "sr": "99.07", "fours": 24, "sixes": 7 },
+      { "league": "Cover Drive Cricket School — Africa Cup Season 2 U/9 2024", "matches": 4, "runs": 26, "hs": 18, "avg": "6.5", "sr": "57.78", "fours": 4, "sixes": 0 },
+      { "league": "Cover Drive Cricket School — Invitational Games", "matches": 6, "runs": 121, "hs": 51, "avg": "60.5", "sr": "131.52", "fours": 19, "sixes": 2 },
+      { "league": "National Premier League SA — LPL 2026 U11", "matches": 10, "runs": 96, "hs": 20, "avg": "13.71", "sr": "86.49", "fours": 15, "sixes": 0 },
+      { "league": "Delfos JNR Hundred — NAS Junior T20 2025", "matches": 6, "runs": 82, "hs": 24, "avg": "16.4", "sr": "76.64", "fours": 12, "sixes": 0 },
+      { "league": "Delfos JNR Hundred — Black Widow Junior T20 2024", "matches": 3, "runs": 10, "hs": 9, "avg": "5.0", "sr": "90.91", "fours": 2, "sixes": 0 },
+      { "league": "Randburg CCC Juniors — Randburg Hundred 2024 U9", "matches": 7, "runs": 62, "hs": 22, "avg": "12.4", "sr": "79.49", "fours": 7, "sixes": 1 },
+      { "league": "DJ T10 — DJ T10 2024 U9", "matches": 5, "runs": 133, "hs": 62, "avg": "133.0", "sr": "172.73", "fours": 25, "sixes": 2 },
+      { "league": "Lions Club League 2026/27 — Jozi Cup U11 2026", "matches": 7, "runs": 47, "hs": 15, "avg": "7.83", "sr": "53.41", "fours": 5, "sixes": 0 },
+      { "league": "Lions Club League 2026/27 — U11 Club Junior Premier", "matches": 1, "runs": 0, "hs": 0, "avg": "0.0", "sr": "0.0", "fours": 0, "sixes": 0 },
+      { "league": "Lions Club League 2026/27 — Jozi Cup U11 2025", "matches": 6, "runs": 122, "hs": 35, "avg": "20.33", "sr": "68.54", "fours": 17, "sixes": 1 },
+      { "league": "Lions Schools — Crawford Sandton U11A (Twenty20)", "matches": 14, "runs": 156, "hs": 73, "avg": "22.29", "sr": "132.20", "fours": 28, "sixes": 1 },
+      { "league": "Lions Schools — U11 JHB Far North (OneDay)", "matches": 8, "runs": 85, "hs": 58, "avg": "14.17", "sr": "77.98", "fours": 17, "sixes": 0 },
+      { "league": "Montrose Night Challenge — U11 2025", "matches": 2, "runs": 33, "hs": 22
