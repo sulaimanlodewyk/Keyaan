@@ -1,111 +1,1809 @@
 {
-  "player": {
-    "name": "Keyaan Lodewyk",
-    "playerRole": "Batter / All-Rounder",
-    "battingStyle": "Right-Hand Bat",
-    "jerseyNumber": "18",
-    "runs": 485,
-    "matches": 18,
-    "wickets": 8,
-    "currentTeam": "Sandton Tigers"
-  },
-  "clubs": [
+ "player": {
+  "name": "Keyaan Lodewyk",
+  "playerRole": "Wicket Keeper",
+  "battingStyle": "Right Hand Batter (Top Order)",
+  "bowlingStyle": "Right Arm Off Spin",
+  "jerseyNumber": "12",
+  "matches": 119,
+  "runs": 1669,
+  "wickets": 6,
+  "currentTeam": "Sandton Tigers Blaze"
+ },
+ "clubs": [
+  {
+   "club": "Cover drive cricket school",
+   "city": "Johannesburg",
+   "batting": [
     {
-      "club": "Sandton Tigers",
-      "batting": [
-        {
-          "teamName": "Sandton Tigers 1st XI",
-          "seriesType": "T20",
-          "matches": 10,
-          "innings": 10,
-          "runsScored": 310,
-          "highestScore": "78*",
-          "average": "38.75",
-          "strikeRate": "135.37",
-          "fours": 32,
-          "sixers": 8,
-          "fifties": 3,
-          "hundreds": 0
-        }
-      ],
-      "matches": [
-        {
-          "matchDate": "2026-10-18",
-          "opponent": "Delfos CC",
-          "runsScored": 45,
-          "ballsFaced": 32,
-          "strikeRate": "140.62",
-          "fours": 6,
-          "sixers": 1,
-          "wickets": "2/18",
-          "result": "Won"
-        },
-        {
-          "matchDate": "2026-10-11",
-          "opponent": "Joburg Pirates",
-          "runsScored": 78,
-          "ballsFaced": 51,
-          "strikeRate": "152.94",
-          "fours": 8,
-          "sixers": 3,
-          "wickets": "1/24",
-          "result": "Won"
-        },
-        {
-          "matchDate": "2026-10-04",
-          "opponent": "Marks Park",
-          "runsScored": 12,
-          "ballsFaced": 10,
-          "strikeRate": "120.00",
-          "fours": 2,
-          "sixers": 0,
-          "wickets": "0/15",
-          "result": "Lost"
-        }
-      ]
+     "teamName": "Eagles Cricket",
+     "seriesType": "Twenty20",
+     "matches": 25,
+     "innings": 21,
+     "runsScored": 564,
+     "ballsFaced": 548,
+     "average": "47.00",
+     "strikeRate": "102.92",
+     "highestScore": 102,
+     "fours": 75,
+     "sixers": 13,
+     "notOuts": 9,
+     "ducks": 1,
+     "twentyFives": 3,
+     "fifties": 4,
+     "hundreds": 1,
+     "points": 1003
+    }
+   ],
+   "bowling": [
+    {
+     "teamName": "Eagles Cricket",
+     "seriesType": "Twenty20",
+     "matches": 25,
+     "innings": 6,
+     "wickets": 1,
+     "overs": "11",
+     "economy": "5.55",
+     "catches": 2
+    }
+   ]
+  },
+  {
+   "club": "Delfos JNR Hundred 2026",
+   "city": "Johannesburg",
+   "batting": [
+    {
+     "teamName": "Sandton Tigers NAS U11 2025",
+     "seriesType": "Twenty20",
+     "matches": 9,
+     "innings": 8,
+     "runsScored": 92,
+     "ballsFaced": 118,
+     "average": "13.14",
+     "strikeRate": "77.97",
+     "highestScore": 24,
+     "fours": 14,
+     "sixers": 0,
+     "notOuts": 1,
+     "ducks": 1,
+     "twentyFives": 0,
+     "fifties": 0,
+     "hundreds": 0,
+     "points": 106
+    }
+   ],
+   "bowling": [
+    {
+     "teamName": "Sandton Tigers NAS U11 2025",
+     "seriesType": "Twenty20",
+     "matches": 9,
+     "innings": 1,
+     "wickets": 0,
+     "overs": "2",
+     "economy": "8.50",
+     "catches": 3
+    }
+   ]
+  },
+  {
+   "club": "South Africa Cricket Academy ",
+   "city": "Johannesburg",
+   "batting": [
+    {
+     "teamName": "Cover Drive Cricket School",
+     "seriesType": "Youth",
+     "matches": 1,
+     "innings": 1,
+     "runsScored": 8,
+     "ballsFaced": 7,
+     "average": "8.00",
+     "strikeRate": "114.29",
+     "highestScore": 8,
+     "fours": 1,
+     "sixers": 0,
+     "notOuts": 0,
+     "ducks": 0,
+     "twentyFives": 0,
+     "fifties": 0,
+     "hundreds": 0,
+     "points": 9
     },
     {
-      "club": "Gauteng Premier League",
-      "batting": [
-        {
-          "teamName": "Gauteng Lions Academy",
-          "seriesType": "50 Overs",
-          "matches": 8,
-          "innings": 8,
-          "runsScored": 175,
-          "highestScore": "54",
-          "average": "25.00",
-          "strikeRate": "82.54",
-          "fours": 18,
-          "sixers": 2,
-          "fifties": 1,
-          "hundreds": 0
-        }
-      ],
-      "matches": [
-        {
-          "matchDate": "2026-09-27",
-          "opponent": "Pretoria Capitals Academy",
-          "runsScored": 54,
-          "ballsFaced": 62,
-          "strikeRate": "87.09",
-          "fours": 6,
-          "sixers": 1,
-          "wickets": "3/30",
-          "result": "Won"
-        },
-        {
-          "matchDate": "2026-09-20",
-          "opponent": "SOWETO Pioneers",
-          "runsScored": 28,
-          "ballsFaced": 35,
-          "strikeRate": "80.00",
-          "fours": 3,
-          "sixers": 0,
-          "wickets": "1/22",
-          "result": "Won"
-        }
-      ]
+     "teamName": "Eagles U11",
+     "seriesType": "Twenty20",
+     "matches": 2,
+     "innings": 1,
+     "runsScored": 8,
+     "ballsFaced": 20,
+     "average": "8.00",
+     "strikeRate": "40.00",
+     "highestScore": 8,
+     "fours": 0,
+     "sixers": 0,
+     "notOuts": 0,
+     "ducks": 0,
+     "twentyFives": 0,
+     "fifties": 0,
+     "hundreds": 0,
+     "points": -2
+    },
+    {
+     "teamName": "Eagles U11",
+     "seriesType": "OneDay",
+     "matches": 2,
+     "innings": 1,
+     "runsScored": 5,
+     "ballsFaced": 23,
+     "average": "5.00",
+     "strikeRate": "21.74",
+     "highestScore": 5,
+     "fours": 0,
+     "sixers": 0,
+     "notOuts": 0,
+     "ducks": 0,
+     "twentyFives": 0,
+     "fifties": 0,
+     "hundreds": 0,
+     "points": 1
     }
+   ],
+   "bowling": [
+    {
+     "teamName": "Cover Drive Cricket School",
+     "seriesType": "Youth",
+     "matches": 1,
+     "innings": 1,
+     "wickets": 0,
+     "overs": "2",
+     "economy": "10.00",
+     "catches": 0
+    }
+   ]
+  },
+  {
+   "club": "Randburg Cricket Club Juniors",
+   "city": "Praegville, Randburg, 2194",
+   "batting": [
+    {
+     "teamName": "Cover Drive U9",
+     "seriesType": "100b",
+     "matches": 7,
+     "innings": 7,
+     "runsScored": 62,
+     "ballsFaced": 78,
+     "average": "12.40",
+     "strikeRate": "79.49",
+     "highestScore": 22,
+     "fours": 7,
+     "sixers": 1,
+     "notOuts": 2,
+     "ducks": 0,
+     "twentyFives": 0,
+     "fifties": 0,
+     "hundreds": 0,
+     "points": 91
+    }
+   ],
+   "bowling": [
+    {
+     "teamName": "Cover Drive U9",
+     "seriesType": "100b",
+     "matches": 7,
+     "innings": 1,
+     "wickets": 2,
+     "overs": "1.4",
+     "economy": "7.80",
+     "catches": 0
+    }
+   ]
+  },
+  {
+   "club": "Lions Club League 2026/27",
+   "city": "Sandton",
+   "batting": [
+    {
+     "teamName": "Exaze Sandton Tigers Blaze U11",
+     "seriesType": "Twenty20",
+     "matches": 14,
+     "innings": 14,
+     "runsScored": 169,
+     "ballsFaced": 268,
+     "average": "13.00",
+     "strikeRate": "63.06",
+     "highestScore": 35,
+     "fours": 22,
+     "sixers": 1,
+     "notOuts": 1,
+     "ducks": 3,
+     "twentyFives": 2,
+     "fifties": 0,
+     "hundreds": 0,
+     "points": 171
+    }
+   ],
+   "bowling": [
+    {
+     "teamName": "Exaze Sandton Tigers Blaze U11",
+     "seriesType": "Twenty20",
+     "matches": 14,
+     "innings": 1,
+     "wickets": 0,
+     "overs": "0.5",
+     "economy": "8.40",
+     "catches": 3
+    }
+   ]
+  },
+  {
+   "club": "Lions School League 2026",
+   "city": "Sandton",
+   "batting": [
+    {
+     "teamName": "Crawford Sandton U11A 2026",
+     "seriesType": "Twenty20",
+     "matches": 14,
+     "innings": 9,
+     "runsScored": 156,
+     "ballsFaced": 118,
+     "average": "22.29",
+     "strikeRate": "132.20",
+     "highestScore": 73,
+     "fours": 28,
+     "sixers": 1,
+     "notOuts": 2,
+     "ducks": 1,
+     "twentyFives": 1,
+     "fifties": 1,
+     "hundreds": 0,
+     "points": 265
+    },
+    {
+     "teamName": "U11 JHB Far North 4 TM 2026",
+     "seriesType": "OneDay",
+     "matches": 8,
+     "innings": 8,
+     "runsScored": 85,
+     "ballsFaced": 109,
+     "average": "14.17",
+     "strikeRate": "77.98",
+     "highestScore": 58,
+     "fours": 17,
+     "sixers": 0,
+     "notOuts": 2,
+     "ducks": 3,
+     "twentyFives": 0,
+     "fifties": 1,
+     "hundreds": 0,
+     "points": 108
+    }
+   ],
+   "bowling": [
+    {
+     "teamName": "Crawford Sandton U11A 2026",
+     "seriesType": "Twenty20",
+     "matches": 14,
+     "innings": 5,
+     "wickets": 2,
+     "overs": "7.5",
+     "economy": "5.74",
+     "catches": 4
+    }
+   ]
+  },
+  {
+   "club": "Alfeco Dream BIG Montrose Night Challenge",
+   "city": "Johannesburg",
+   "batting": [
+    {
+     "teamName": "Bryneven",
+     "seriesType": "Twenty20",
+     "matches": 4,
+     "innings": 4,
+     "runsScored": 52,
+     "ballsFaced": 61,
+     "average": "13.00",
+     "strikeRate": "85.25",
+     "highestScore": 22,
+     "fours": 8,
+     "sixers": 1,
+     "notOuts": 0,
+     "ducks": 0,
+     "twentyFives": 0,
+     "fifties": 0,
+     "hundreds": 0,
+     "points": 66
+    }
+   ],
+   "bowling": []
+  },
+  {
+   "club": "Steyn City School",
+   "city": "Fourways",
+   "batting": [
+    {
+     "teamName": "Crawford Sandton",
+     "seriesType": "Youth",
+     "matches": 1,
+     "innings": 1,
+     "runsScored": 38,
+     "ballsFaced": 27,
+     "average": "38.00",
+     "strikeRate": "140.74",
+     "highestScore": 38,
+     "fours": 7,
+     "sixers": 0,
+     "notOuts": 0,
+     "ducks": 0,
+     "twentyFives": 1,
+     "fifties": 0,
+     "hundreds": 0,
+     "points": 95
+    }
+   ],
+   "bowling": []
+  },
+  {
+   "club": "Gauteng Central Primary Schools Saturday League 2026",
+   "city": "Sandton",
+   "batting": [
+    {
+     "teamName": "Sandton U10 2025",
+     "seriesType": "Twenty20",
+     "matches": 3,
+     "innings": 2,
+     "runsScored": 2,
+     "ballsFaced": 10,
+     "average": "2.00",
+     "strikeRate": "20.00",
+     "highestScore": 2,
+     "fours": 0,
+     "sixers": 0,
+     "notOuts": 1,
+     "ducks": 1,
+     "twentyFives": 0,
+     "fifties": 0,
+     "hundreds": 0,
+     "points": 0
+    }
+   ],
+   "bowling": [
+    {
+     "teamName": "Sandton U10 2025",
+     "seriesType": "Twenty20",
+     "matches": 3,
+     "innings": 1,
+     "wickets": 1,
+     "overs": "0.1",
+     "economy": "0.00",
+     "catches": 2
+    }
+   ]
+  },
+  {
+   "club": "DJ T10 ",
+   "city": "Johannesburg",
+   "batting": [
+    {
+     "teamName": "Superstars",
+     "seriesType": "Ten10",
+     "matches": 5,
+     "innings": 5,
+     "runsScored": 133,
+     "ballsFaced": 77,
+     "average": "133.00",
+     "strikeRate": "172.73",
+     "highestScore": 62,
+     "fours": 25,
+     "sixers": 2,
+     "notOuts": 4,
+     "ducks": 0,
+     "twentyFives": 0,
+     "fifties": 1,
+     "hundreds": 0,
+     "points": 205
+    }
+   ],
+   "bowling": [
+    {
+     "teamName": "Superstars",
+     "seriesType": "Ten10",
+     "matches": 5,
+     "innings": 1,
+     "wickets": 0,
+     "overs": "1",
+     "economy": "8.00",
+     "catches": 0
+    }
+   ]
+  },
+  {
+   "club": "National Premier League South Africa",
+   "city": "Johannesburg",
+   "batting": [
+    {
+     "teamName": "Jozi Warriors U11",
+     "seriesType": "Twenty20",
+     "matches": 10,
+     "innings": 8,
+     "runsScored": 96,
+     "ballsFaced": 111,
+     "average": "13.71",
+     "strikeRate": "86.49",
+     "highestScore": 20,
+     "fours": 15,
+     "sixers": 0,
+     "notOuts": 1,
+     "ducks": 0,
+     "twentyFives": 0,
+     "fifties": 0,
+     "hundreds": 0,
+     "points": 105
+    }
+   ],
+   "bowling": []
+  },
+  {
+   "club": "Super 8 Easter cup 2026",
+   "city": "Bryanston",
+   "batting": [
+    {
+     "teamName": "Boundary Breakers Academy U11",
+     "seriesType": "Ten10",
+     "matches": 3,
+     "innings": 3,
+     "runsScored": 38,
+     "ballsFaced": 30,
+     "average": "38.00",
+     "strikeRate": "126.67",
+     "highestScore": 15,
+     "fours": 5,
+     "sixers": 0,
+     "notOuts": 2,
+     "ducks": 0,
+     "twentyFives": 0,
+     "fifties": 0,
+     "hundreds": 0,
+     "points": 123
+    }
+   ],
+   "bowling": []
+  }
+ ],
+ "matchWise": {
+  "battingStats": [
+   {
+    "clubId": 1114027,
+    "matchId": 1037,
+    "matchDate": "10/25/2026",
+    "runs": 2,
+    "dismissedBy": "Michael Wilkinson",
+    "opponentTeam": "Club44"
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 1019,
+    "matchDate": "10/23/2026",
+    "runs": 15,
+    "dismissedBy": "Aarav Purohit",
+    "opponentTeam": "Raptors Blue"
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 1005,
+    "matchDate": "10/17/2026",
+    "runs": 16,
+    "dismissedBy": "Aden Nikel Nikel",
+    "opponentTeam": "Old Eds (de Kock)"
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 970,
+    "matchDate": "10/19/2025",
+    "runs": 0,
+    "dismissedBy": null,
+    "opponentTeam": "Old Edwardians"
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 953,
+    "matchDate": "09/27/2025",
+    "runs": 33,
+    "dismissedBy": "Liam Castle",
+    "opponentTeam": "Raptors White"
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 945,
+    "matchDate": "09/26/2025",
+    "runs": 4,
+    "dismissedBy": "Aiden Lamonte",
+    "opponentTeam": "Western Warriors"
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 948,
+    "matchDate": "09/26/2025",
+    "runs": 14,
+    "dismissedBy": "Joshua Scott Dawkins",
+    "opponentTeam": "Pitch Perfect"
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 937,
+    "matchDate": "09/21/2025",
+    "runs": 1,
+    "dismissedBy": null,
+    "opponentTeam": "Old Edwardians"
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 929,
+    "matchDate": "09/19/2025",
+    "runs": 55,
+    "dismissedBy": null,
+    "opponentTeam": "Sandton Tigers Azure"
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 913,
+    "matchDate": "09/12/2025",
+    "runs": 6,
+    "dismissedBy": "JORDAN MOODLEY",
+    "opponentTeam": "Raptors Blue"
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 906,
+    "matchDate": "09/05/2025",
+    "runs": 15,
+    "dismissedBy": "Taylen Viljoen",
+    "opponentTeam": "Randfontein"
+   }
+  ],
+  "bowlingStats": [
+   {
+    "clubId": 1114027,
+    "matchId": 1037,
+    "matchDate": "10/25/2026",
+    "wickets": 0,
+    "oversBowled": "0",
+    "economy": "NaN",
+    "opponentTeam": "Club44",
+    "runsGiven": 0
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 1019,
+    "matchDate": "10/23/2026",
+    "wickets": 0,
+    "oversBowled": "0",
+    "economy": "NaN",
+    "opponentTeam": "Raptors Blue",
+    "runsGiven": 0
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 1005,
+    "matchDate": "10/17/2026",
+    "wickets": 0,
+    "oversBowled": "0",
+    "economy": "NaN",
+    "opponentTeam": "Old Eds (de Kock)",
+    "runsGiven": 0
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 970,
+    "matchDate": "10/19/2025",
+    "wickets": 0,
+    "oversBowled": "0",
+    "economy": "NaN",
+    "opponentTeam": "Old Edwardians",
+    "runsGiven": 0
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 953,
+    "matchDate": "09/27/2025",
+    "wickets": 0,
+    "oversBowled": "0",
+    "economy": "NaN",
+    "opponentTeam": "Raptors White",
+    "runsGiven": 0
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 945,
+    "matchDate": "09/26/2025",
+    "wickets": 0,
+    "oversBowled": "0",
+    "economy": "NaN",
+    "opponentTeam": "Western Warriors",
+    "runsGiven": 0
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 948,
+    "matchDate": "09/26/2025",
+    "wickets": 0,
+    "oversBowled": "0",
+    "economy": "NaN",
+    "opponentTeam": "Pitch Perfect",
+    "runsGiven": 0
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 937,
+    "matchDate": "09/21/2025",
+    "wickets": 0,
+    "oversBowled": "0",
+    "economy": "NaN",
+    "opponentTeam": "Old Edwardians",
+    "runsGiven": 0
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 929,
+    "matchDate": "09/19/2025",
+    "wickets": 0,
+    "oversBowled": "0",
+    "economy": "NaN",
+    "opponentTeam": "Sandton Tigers Azure",
+    "runsGiven": 0
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 913,
+    "matchDate": "09/12/2025",
+    "wickets": 0,
+    "oversBowled": "0",
+    "economy": "NaN",
+    "opponentTeam": "Raptors Blue",
+    "runsGiven": 0
+   },
+   {
+    "clubId": 1114027,
+    "matchId": 906,
+    "matchDate": "09/05/2025",
+    "wickets": 0,
+    "oversBowled": "0",
+    "economy": "NaN",
+    "opponentTeam": "Randfontein",
+    "runsGiven": 0
+   }
   ]
+ },
+ "league100b_overall": {
+  "batting": [
+   {
+    "playerId": 0,
+    "encryptedPlayerId": "pQj45xRTdXCsQbt3atwCOw",
+    "matches": 11,
+    "innings": 10,
+    "runsScored": 161,
+    "ballsFaced": 155,
+    "average": "17.89",
+    "strikeRate": "103.87",
+    "highestScore": 55,
+    "notOuts": 1,
+    "outs": 0,
+    "fours": 26,
+    "sixers": 2,
+    "ducks": 0,
+    "twentyFives": 1,
+    "fifties": 1,
+    "seventyFives": 0,
+    "hundreds": 0,
+    "seriesType": "100b",
+    "matchYear": 0,
+    "innings_nummber": 0,
+    "bowlingStyle": "",
+    "points": 221
+   }
+  ],
+  "bowling": [
+   {
+    "playerId": 0,
+    "encryptedPlayerId": "pQj45xRTdXCsQbt3atwCOw",
+    "matches": 11,
+    "innings": 0,
+    "runsConceded": 0,
+    "ballsBowled": 0,
+    "overs": "0.0",
+    "maidens": 0,
+    "wickets": 0,
+    "average": "",
+    "economy": "",
+    "seriesType": "100b",
+    "matchYear": 0,
+    "innings_nummber": 0,
+    "battingStyle": "",
+    "points": 0
+   }
+  ]
+ },
+ "league100b_yearWise_batting": [
+  {
+   "playerId": 0,
+   "encryptedPlayerId": "pQj45xRTdXCsQbt3atwCOw",
+   "matches": 3,
+   "innings": 3,
+   "runsScored": 33,
+   "ballsFaced": 26,
+   "average": "11.00",
+   "strikeRate": "126.92",
+   "highestScore": 16,
+   "notOuts": 0,
+   "outs": 0,
+   "fours": 7,
+   "sixers": 0,
+   "ducks": 0,
+   "twentyFives": 0,
+   "fifties": 0,
+   "seventyFives": 0,
+   "hundreds": 0,
+   "seriesType": "100b",
+   "matchYear": 2026,
+   "innings_nummber": 0,
+   "bowlingStyle": "",
+   "points": 52
+  },
+  {
+   "playerId": 0,
+   "encryptedPlayerId": "pQj45xRTdXCsQbt3atwCOw",
+   "matches": 8,
+   "innings": 7,
+   "runsScored": 128,
+   "ballsFaced": 129,
+   "average": "21.33",
+   "strikeRate": "99.22",
+   "highestScore": 55,
+   "notOuts": 1,
+   "outs": 0,
+   "fours": 19,
+   "sixers": 2,
+   "ducks": 0,
+   "twentyFives": 1,
+   "fifties": 1,
+   "seventyFives": 0,
+   "hundreds": 0,
+   "seriesType": "100b",
+   "matchYear": 2025,
+   "innings_nummber": 0,
+   "bowlingStyle": "",
+   "points": 169
+  }
+ ],
+ "montroseNightChallenge_bySeries": [
+  {
+   "series": "U11 - 2025",
+   "matches": 2,
+   "innings": 2,
+   "notOuts": 0,
+   "runs": 33,
+   "balls": 41,
+   "avg": 16.5,
+   "sr": 80.49,
+   "hs": 22,
+   "fours": 4,
+   "sixes": 1
+  },
+  {
+   "series": "U11 - 2026",
+   "matches": 2,
+   "innings": 2,
+   "notOuts": 0,
+   "runs": 19,
+   "balls": 20,
+   "avg": 9.5,
+   "sr": 95.0,
+   "hs": 18,
+   "fours": 4,
+   "sixes": 0,
+   "note": "2026 innings were 18 (4x4) and 1; Oct 9 vs Alex Hub / Oct 16 vs Dainfern, order unknown"
+  }
+ ],
+ "lionsSchools": {
+  "batting": {
+   "Twenty20": {
+    "matches": 14,
+    "innings": 9,
+    "notOuts": 2,
+    "runsScored": 156,
+    "ballsFaced": 118,
+    "average": "22.29",
+    "strikeRate": "132.20",
+    "highestScore": 73,
+    "fours": 28,
+    "sixers": 1,
+    "ducks": 1,
+    "twentyFives": 1,
+    "fifties": 1,
+    "hundreds": 0,
+    "points": 265
+   },
+   "Twenty20_yearWise": [
+    {
+     "year": 2026,
+     "m": 8,
+     "r": 113,
+     "hs": 73,
+     "avg": "22.60",
+     "sr": "148.68"
+    },
+    {
+     "year": 2025,
+     "m": 2,
+     "r": 1,
+     "hs": 1,
+     "avg": "1.00",
+     "sr": "50.00"
+    },
+    {
+     "year": 2024,
+     "m": 4,
+     "r": 42,
+     "hs": 28,
+     "avg": "42.00",
+     "sr": "105.00"
+    }
+   ],
+   "OneDay": {
+    "matches": 8,
+    "innings": 8,
+    "notOuts": 2,
+    "runsScored": 85,
+    "ballsFaced": 109,
+    "average": "14.17",
+    "strikeRate": "77.98",
+    "highestScore": 58,
+    "fours": 17,
+    "sixers": 0,
+    "ducks": 3,
+    "twentyFives": 0,
+    "fifties": 1,
+    "hundreds": 0,
+    "points": 108
+   },
+   "OneDay_yearWise": [
+    {
+     "year": 2026,
+     "m": 5,
+     "r": 6,
+     "hs": 4,
+     "avg": "1.20",
+     "sr": "21.43"
+    },
+    {
+     "year": 2025,
+     "m": 3,
+     "r": 79,
+     "hs": 58,
+     "avg": "79.00",
+     "sr": "97.53"
+    }
+   ]
+  },
+  "matchWise": [
+   {
+    "date": "10/20/2026",
+    "vs": "Reddam House Waterfall U11A 2026",
+    "runs": 73,
+    "dismissedBy": "Cooper M"
+   },
+   {
+    "date": "09/26/2026",
+    "vs": "U11 JHB West 2 AH 2026",
+    "runs": 0,
+    "dismissedBy": "Asher Daniels"
+   },
+   {
+    "date": "09/24/2026",
+    "vs": "U11 JHB North MA 2026",
+    "runs": 0,
+    "dismissedBy": "Marais Jacobs"
+   },
+   {
+    "date": "09/23/2026",
+    "vs": "U11 South Area MB 2026",
+    "runs": 0,
+    "dismissedBy": "MW Van Aswegen"
+   },
+   {
+    "date": "09/12/2026",
+    "vs": "U11 JHB Far North 1 RM 2026",
+    "runs": 0,
+    "dismissedBy": null
+   },
+   {
+    "date": "03/03/2026",
+    "vs": "Heronbridge U11A 2026",
+    "runs": 0,
+    "dismissedBy": null
+   },
+   {
+    "date": "02/24/2026",
+    "vs": "Grayston U11A 2026",
+    "runs": 1,
+    "dismissedBy": "Jack ..."
+   },
+   {
+    "date": "02/17/2026",
+    "vs": "Dainfern U11A 2026",
+    "runs": 19,
+    "dismissedBy": "Jack Long"
+   },
+   {
+    "date": "02/10/2026",
+    "vs": "Crawford Sandton U11A 2026",
+    "runs": 16,
+    "dismissedBy": "Joshua Karpelowsky"
+   },
+   {
+    "date": "02/03/2026",
+    "vs": "Reddam House Waterfall U11A 2026",
+    "runs": 4,
+    "dismissedBy": "Kaelo Mcumi"
+   },
+   {
+    "date": "01/27/2026",
+    "vs": "Kings College Bryanston U11A 2026",
+    "runs": 0,
+    "dismissedBy": null
+   },
+   {
+    "date": "01/27/2026",
+    "vs": "Reddam House Waterfall U11A 2026",
+    "runs": 0,
+    "dismissedBy": null
+   },
+   {
+    "date": "11/10/2025",
+    "vs": "Kings College Bryanston U10A 2025",
+    "runs": 0,
+    "dismissedBy": null
+   },
+   {
+    "date": "10/05/2025",
+    "vs": "U10 Gauteng West 2 2025",
+    "runs": 19,
+    "dismissedBy": null
+   },
+   {
+    "date": "10/04/2025",
+    "vs": "U10 Gauteng West 3 2025",
+    "runs": 58,
+    "dismissedBy": null
+   },
+   {
+    "date": "10/03/2025",
+    "vs": "U10 Sedibeng 1 2025",
+    "runs": 2,
+    "dismissedBy": "Luan Barnard"
+   },
+   {
+    "date": "01/27/2025",
+    "vs": "Rivonia U10A 2025",
+    "runs": 1,
+    "dismissedBy": "Reagile Mnisi"
+   },
+   {
+    "date": "03/07/2024",
+    "vs": "Bryneven U9A 2024",
+    "runs": 28,
+    "dismissedBy": null
+   },
+   {
+    "date": "02/29/2024",
+    "vs": "Kings College Bryanston U9A 2024",
+    "runs": 14,
+    "dismissedBy": null
+   },
+   {
+    "date": "02/22/2024",
+    "vs": "Reddam House Waterfall U9A 2024",
+    "runs": 0,
+    "dismissedBy": "Aaryan Koosialee"
+   },
+   {
+    "date": "02/08/2024",
+    "vs": "Redhill U9A 2024",
+    "runs": 0,
+    "dismissedBy": null
+   }
+  ],
+  "fielding": [
+   {
+    "seriesType": "Twenty20",
+    "team": "Bryneven U11A 2026",
+    "catches": 2,
+    "wkCatches": 2,
+    "stumpings": 2,
+    "total": 4
+   },
+   {
+    "seriesType": "Twenty20",
+    "team": "Crawford Sandton U10A 2025",
+    "catches": 1,
+    "wkCatches": 1,
+    "stumpings": 0,
+    "total": 1
+   },
+   {
+    "seriesType": "Twenty20",
+    "team": "Crawford Sandton U9A 2024",
+    "catches": 1,
+    "wkCatches": 0,
+    "stumpings": 0,
+    "total": 1
+   },
+   {
+    "seriesType": "One Day",
+    "team": "U11 JHB Far North 4 TM 2026",
+    "catches": 1,
+    "wkCatches": 1,
+    "stumpings": 1,
+    "total": 2
+   },
+   {
+    "seriesType": "One Day",
+    "team": "U11 JHB Far North 4 TM 2026",
+    "catches": 1,
+    "wkCatches": 0,
+    "stumpings": 4,
+    "total": 5
+   },
+   {
+    "seriesType": "One Day",
+    "team": "U10 JHB Far North 2 2025",
+    "catches": 3,
+    "wkCatches": 3,
+    "stumpings": 0,
+    "total": 3
+   }
+  ],
+  "bowling": [
+   {
+    "playerID": 4493684,
+    "encryptedPlayerId": "pQj45xRTdXCsQbt3atwCOw",
+    "runs": 21,
+    "balls": 11,
+    "fourWickets": 0,
+    "fiveWickets": 0,
+    "firstName": "Keyaan",
+    "lastName": "Lodewyk",
+    "matches": 8,
+    "innings": 1,
+    "maidens": 0,
+    "wickets": 1,
+    "wides": 7,
+    "noBalls": 2,
+    "hattricks": 0,
+    "dotBalls": 0,
+    "matchType": null,
+    "seriesType": "Twenty20",
+    "points": 20,
+    "teamId": 0,
+    "encryptedTeamId": null,
+    "catches": 2,
+    "leagueId": 616,
+    "encryptedLeagueId": "hAg2mZgb6yICZqYo7rrRgg",
+    "leagueName": "CGL Primary Schools 2026 - CGL U11A 2026",
+    "teamName": null,
+    "teamCode": "bev",
+    "teamlogo_file_path": "/documentsRep/teamLogos/78b9e58c-de54-41f5-bb5e-89baebab2534.jpg",
+    "profilepic_file_path": "/documentsRep/profilePics/7645217d-4fc5-4af3-809c-62fafc2b5687.jpeg",
+    "economy": "11.45",
+    "playingRole": "",
+    "clubId": 0,
+    "encryptedClubId": null,
+    "bbf": 0,
+    "maxWickets": 0,
+    "runsGiven": 0,
+    "bbfString": "21/1",
+    "overs": "1.5",
+    "gender": null,
+    "strikeRate": "11.0",
+    "average": "21.00",
+    "matchYear": "2026"
+   },
+   {
+    "playerID": 4493684,
+    "encryptedPlayerId": "pQj45xRTdXCsQbt3atwCOw",
+    "runs": 3,
+    "balls": 6,
+    "fourWickets": 0,
+    "fiveWickets": 0,
+    "firstName": "Keyaan",
+    "lastName": "Lodewyk",
+    "matches": 2,
+    "innings": 1,
+    "maidens": 0,
+    "wickets": 0,
+    "wides": 0,
+    "noBalls": 0,
+    "hattricks": 0,
+    "dotBalls": 0,
+    "matchType": null,
+    "seriesType": "Twenty20",
+    "points": 0,
+    "teamId": 0,
+    "encryptedTeamId": null,
+    "catches": 1,
+    "leagueId": 483,
+    "encryptedLeagueId": "tqNEMg6yLS0SkuXPcxj9tQ",
+    "leagueName": "CGL Primary Schools 2025 - CGL U10A 2025",
+    "teamName": null,
+    "teamCode": "CSU",
+    "teamlogo_file_path": "/documentsRep/teamLogos/6410555c-afd8-420c-a248-9297003ca82c.jpg",
+    "profilepic_file_path": "/documentsRep/profilePics/7645217d-4fc5-4af3-809c-62fafc2b5687.jpeg",
+    "economy": "3.00",
+    "playingRole": "",
+    "clubId": 0,
+    "encryptedClubId": null,
+    "bbf": 0,
+    "maxWickets": 0,
+    "runsGiven": 0,
+    "bbfString": "0/0",
+    "overs": "1",
+    "gender": null,
+    "strikeRate": "0.0",
+    "average": "0",
+    "matchYear": "2025"
+   },
+   {
+    "playerID": 4493684,
+    "encryptedPlayerId": "pQj45xRTdXCsQbt3atwCOw",
+    "runs": 21,
+    "balls": 30,
+    "fourWickets": 0,
+    "fiveWickets": 0,
+    "firstName": "Keyaan",
+    "lastName": "Lodewyk",
+    "matches": 4,
+    "innings": 3,
+    "maidens": 1,
+    "wickets": 1,
+    "wides": 4,
+    "noBalls": 3,
+    "hattricks": 0,
+    "dotBalls": 0,
+    "matchType": null,
+    "seriesType": "Twenty20",
+    "points": 90,
+    "teamId": 0,
+    "encryptedTeamId": null,
+    "catches": 1,
+    "leagueId": 356,
+    "encryptedLeagueId": "sTDZetV0gSXXmpVtw0taxw",
+    "leagueName": "Primary Schools 2024 - Under 9A 2024",
+    "teamName": null,
+    "teamCode": "CSU",
+    "teamlogo_file_path": "/documentsRep/teamLogos/6410555c-afd8-420c-a248-9297003ca82c.jpg",
+    "profilepic_file_path": "/documentsRep/profilePics/7645217d-4fc5-4af3-809c-62fafc2b5687.jpeg",
+    "economy": "4.20",
+    "playingRole": "",
+    "clubId": 0,
+    "encryptedClubId": null,
+    "bbf": 0,
+    "maxWickets": 0,
+    "runsGiven": 0,
+    "bbfString": "12/1",
+    "overs": "5",
+    "gender": null,
+    "strikeRate": "30.0",
+    "average": "21.00",
+    "matchYear": "2024"
+   }
+  ]
+ },
+ "steynCity": {
+  "batting": {
+   "Youth": {
+    "matches": 1,
+    "innings": 1,
+    "notOuts": 0,
+    "runsScored": 38,
+    "ballsFaced": 27,
+    "average": "38.00",
+    "strikeRate": "140.74",
+    "highestScore": 38,
+    "fours": 7,
+    "sixers": 0,
+    "ducks": 0,
+    "twentyFives": 1,
+    "fifties": 0,
+    "hundreds": 0,
+    "points": 95
+   },
+   "Youth_yearWise": [
+    {
+     "year": 2024,
+     "m": 1,
+     "r": 38,
+     "hs": 38,
+     "avg": "38.00",
+     "sr": "140.74"
+    }
+   ]
+  },
+  "matchWise": [
+   {
+    "date": "11/07/2024",
+    "vs": "Steyn City School U9A",
+    "runs": 38,
+    "dismissedBy": "Leo Mavroedakis"
+   }
+  ]
+ },
+ "super8EasterCup2026": {
+  "batting": {
+   "Ten10": {
+    "matches": 3,
+    "innings": 3,
+    "notOuts": 2,
+    "runsScored": 38,
+    "ballsFaced": 30,
+    "average": "38.00",
+    "strikeRate": "126.67",
+    "highestScore": 15,
+    "fours": 5,
+    "sixers": 0,
+    "ducks": 0,
+    "twentyFives": 0,
+    "fifties": 0,
+    "hundreds": 0,
+    "points": 123
+   },
+   "Ten10_yearWise": [
+    {
+     "year": 2026,
+     "m": 3,
+     "r": 38,
+     "hs": 15,
+     "avg": "38.00",
+     "sr": "126.67"
+    }
+   ]
+  },
+  "matchWise": [
+   {
+    "date": "03/29/2026",
+    "vs": "Irish Lions U11",
+    "runs": 15,
+    "dismissedBy": null
+   },
+   {
+    "date": "03/28/2026",
+    "vs": "Club44 U11",
+    "runs": 15,
+    "dismissedBy": null
+   },
+   {
+    "date": "03/28/2026",
+    "vs": "Topguncricket U11",
+    "runs": 8,
+    "dismissedBy": "Aman Kerber"
+   }
+  ]
+ },
+ "insights_lionsLeague": {
+  "dismissalTypes": {
+   "caught": 5,
+   "stumped": 0,
+   "lbw": 1,
+   "runout": 0,
+   "caughtBehind": 1,
+   "bowled": 6,
+   "objectingField": 0,
+   "mankading": 0,
+   "retiredOut": 0,
+   "retiredHurt": 0,
+   "hitWicket": 0
+  },
+  "runsPerBallsFaced": [
+   {
+    "runs": "0",
+    "noOfTimes": 117,
+    "total": 0
+   },
+   {
+    "runs": "1",
+    "noOfTimes": 45,
+    "total": 45
+   },
+   {
+    "runs": "2",
+    "noOfTimes": 5,
+    "total": 10
+   },
+   {
+    "runs": "4",
+    "noOfTimes": 45,
+    "total": 180
+   },
+   {
+    "runs": "6",
+    "noOfTimes": 1,
+    "total": 6
+   }
+  ],
+  "outsByScoreBand": {
+   "0-10": 9,
+   "10-20": 3,
+   "40-50": 1
+  }
+ },
+ "ballistic": {
+  "batting": {
+   "100b": {
+    "matches": 11,
+    "innings": 10,
+    "notOuts": 1,
+    "runsScored": 161,
+    "ballsFaced": 155,
+    "average": "17.89",
+    "strikeRate": "103.87",
+    "highestScore": 55,
+    "fours": 26,
+    "sixers": 2,
+    "ducks": 0,
+    "twentyFives": 1,
+    "fifties": 1,
+    "hundreds": 0,
+    "points": 221
+   },
+   "100b_yearWise": [
+    {
+     "year": 2026,
+     "m": 3,
+     "r": 33,
+     "hs": 16
+    },
+    {
+     "year": 2025,
+     "m": 8,
+     "r": 128,
+     "hs": 55
+    }
+   ]
+  },
+  "matchWise": [
+   {
+    "date": "10/25/2026",
+    "vs": "Club44",
+    "runs": 2,
+    "dismissedBy": "Michael Wilkinson"
+   },
+   {
+    "date": "10/23/2026",
+    "vs": "Raptors Blue",
+    "runs": 15,
+    "dismissedBy": "Aarav Purohit"
+   },
+   {
+    "date": "10/17/2026",
+    "vs": "Old Eds (de Kock)",
+    "runs": 16,
+    "dismissedBy": "Aden Nikel Nikel"
+   },
+   {
+    "date": "10/19/2025",
+    "vs": "Old Edwardians",
+    "runs": 0,
+    "dismissedBy": null
+   },
+   {
+    "date": "09/27/2025",
+    "vs": "Raptors White",
+    "runs": 33,
+    "dismissedBy": "Liam Castle"
+   },
+   {
+    "date": "09/26/2025",
+    "vs": "Western Warriors",
+    "runs": 4,
+    "dismissedBy": "Aiden Lamonte"
+   },
+   {
+    "date": "09/26/2025",
+    "vs": "Pitch Perfect",
+    "runs": 14,
+    "dismissedBy": "Joshua Scott Dawkins"
+   },
+   {
+    "date": "09/21/2025",
+    "vs": "Old Edwardians",
+    "runs": 1,
+    "dismissedBy": null
+   },
+   {
+    "date": "09/19/2025",
+    "vs": "Sandton Tigers Azure",
+    "runs": 55,
+    "dismissedBy": null
+   },
+   {
+    "date": "09/12/2025",
+    "vs": "Raptors Blue",
+    "runs": 6,
+    "dismissedBy": "JORDAN MOODLEY"
+   },
+   {
+    "date": "09/05/2025",
+    "vs": "Randfontein",
+    "runs": 15,
+    "dismissedBy": "Taylen Viljoen"
+   }
+  ]
+ },
+ "seriesRecords": {
+  "Coverdrivecricketschool": {
+   "club": "Cover Drive Cricket School",
+   "clubId": 6010,
+   "series": [
+    {
+     "series": "Africa Cup Season 4 u/11 2026",
+     "matches": 6,
+     "innings": 5,
+     "notOuts": 2,
+     "runs": 164,
+     "balls": 147,
+     "avg": 54.67,
+     "sr": 111.56,
+     "hs": 102,
+     "hundreds": 1,
+     "fifties": 0,
+     "twentyFives": 0,
+     "ducks": 0,
+     "fours": 24,
+     "sixes": 3
+    },
+    {
+     "series": "Africa Cup Season 3 U/11 2025 - PLATINUM TROPHY",
+     "matches": 2,
+     "innings": 1,
+     "notOuts": 1,
+     "runs": 40,
+     "balls": 49,
+     "avg": null,
+     "sr": 81.63,
+     "hs": 40,
+     "hundreds": 0,
+     "fifties": 0,
+     "twentyFives": 1,
+     "ducks": 0,
+     "fours": 4,
+     "sixes": 1
+    },
+    {
+     "series": "Africa Cup Season 3 U/10 2025",
+     "matches": 7,
+     "innings": 7,
+     "notOuts": 4,
+     "runs": 213,
+     "balls": 215,
+     "avg": 71.0,
+     "sr": 99.07,
+     "hs": 64,
+     "hundreds": 0,
+     "fifties": 2,
+     "twentyFives": 2,
+     "ducks": 0,
+     "fours": 24,
+     "sixes": 7
+    },
+    {
+     "series": "Africa Cup Season 2 U/9 2024",
+     "matches": 4,
+     "innings": 4,
+     "notOuts": 0,
+     "runs": 26,
+     "balls": 45,
+     "avg": 6.5,
+     "sr": 57.78,
+     "hs": 18,
+     "hundreds": 0,
+     "fifties": 0,
+     "twentyFives": 0,
+     "ducks": 1,
+     "fours": 4,
+     "sixes": 0
+    },
+    {
+     "series": "Invitational Games",
+     "matches": 6,
+     "innings": 4,
+     "notOuts": 2,
+     "runs": 121,
+     "balls": 92,
+     "avg": 60.5,
+     "sr": 131.52,
+     "hs": 51,
+     "hundreds": 0,
+     "fifties": 2,
+     "twentyFives": 0,
+     "ducks": 0,
+     "fours": 19,
+     "sixes": 2
+    }
+   ],
+   "bowling": [
+    {
+     "series": "Africa Cup Season 4 u/11 2026",
+     "matches": 6,
+     "innings": 0,
+     "overs": 0.0,
+     "runs": 0,
+     "wickets": 0,
+     "bbf": "0/0",
+     "maidens": 0,
+     "ave": 0.0,
+     "econ": 0.0,
+     "sr": 0.0,
+     "4W": 0,
+     "5W": 0,
+     "wides": 0,
+     "catches": 0
+    },
+    {
+     "series": "Africa Cup Season 3 U/11 2025 - PLATINUM TROPHY",
+     "matches": 2,
+     "innings": 2,
+     "overs": 4.0,
+     "runs": 22,
+     "wickets": 1,
+     "bbf": "13/1",
+     "maidens": 0,
+     "ave": 22.0,
+     "econ": 5.5,
+     "sr": 24.0,
+     "4W": 0,
+     "5W": 0,
+     "wides": 4,
+     "catches": 1
+    },
+    {
+     "series": "Africa Cup Season 3 U/10 2025",
+     "matches": 7,
+     "innings": 0,
+     "overs": 0.0,
+     "runs": 0,
+     "wickets": 0,
+     "bbf": "0/0",
+     "maidens": 0,
+     "ave": 0.0,
+     "econ": 0.0,
+     "sr": 0.0,
+     "4W": 0,
+     "5W": 0,
+     "wides": 0,
+     "catches": 1
+    },
+    {
+     "series": "Africa Cup Season 2 U/9 2024",
+     "matches": 4,
+     "innings": 2,
+     "overs": 3.0,
+     "runs": 24,
+     "wickets": 0,
+     "bbf": "0/0",
+     "maidens": 0,
+     "ave": 0.0,
+     "econ": 8.0,
+     "sr": 0.0,
+     "4W": 0,
+     "5W": 0,
+     "wides": 4,
+     "catches": 0
+    },
+    {
+     "series": "Invitational Games",
+     "matches": 6,
+     "innings": 2,
+     "overs": 4.0,
+     "runs": 15,
+     "wickets": 0,
+     "bbf": "0/0",
+     "maidens": 0,
+     "ave": 0.0,
+     "econ": 3.75,
+     "sr": 0.0,
+     "4W": 0,
+     "5W": 0,
+     "wides": 5,
+     "catches": 0
+    }
+   ]
+  },
+  "NationalPremierLeague": {
+   "club": "National Premier League SA",
+   "clubId": 1102592,
+   "series": [
+    {
+     "series": "LPL 2026 - LPL U11 2026",
+     "matches": 10,
+     "innings": 8,
+     "notOuts": 1,
+     "runs": 96,
+     "balls": 111,
+     "avg": 13.71,
+     "sr": 86.49,
+     "hs": 20,
+     "hundreds": 0,
+     "fifties": 0,
+     "twentyFives": 0,
+     "ducks": 0,
+     "fours": 15,
+     "sixes": 0
+    }
+   ]
+  },
+  "DELHUN": {
+   "club": "Delfos JNR Hundred",
+   "clubId": 11873,
+   "series": [
+    {
+     "series": "NAS Junior T20 2025 - NAS U11 2025",
+     "matches": 6,
+     "innings": 6,
+     "notOuts": 1,
+     "runs": 82,
+     "balls": 107,
+     "avg": 16.4,
+     "sr": 76.64,
+     "hs": 24,
+     "hundreds": 0,
+     "fifties": 0,
+     "twentyFives": 0,
+     "ducks": 1,
+     "fours": 12,
+     "sixes": 0
+    },
+    {
+     "series": "Black Widow Junior T20 2024 - U9 BWT20 2024",
+     "matches": 3,
+     "innings": 2,
+     "notOuts": 0,
+     "runs": 10,
+     "balls": 11,
+     "avg": 5.0,
+     "sr": 90.91,
+     "hs": 9,
+     "hundreds": 0,
+     "fifties": 0,
+     "twentyFives": 0,
+     "ducks": 0,
+     "fours": 2,
+     "sixes": 0
+    }
+   ]
+  },
+  "RandburgCricketClubJuniors": {
+   "club": "Randburg CCC Juniors",
+   "clubId": 17971,
+   "series": [
+    {
+     "series": "Randburg Hundred 2024 - Randburg Hundred 2024 U9",
+     "matches": 7,
+     "innings": 7,
+     "notOuts": 2,
+     "runs": 62,
+     "balls": 78,
+     "avg": 12.4,
+     "sr": 79.49,
+     "hs": 22,
+     "hundreds": 0,
+     "fifties": 0,
+     "twentyFives": 0,
+     "ducks": 0,
+     "fours": 7,
+     "sixes": 1
+    }
+   ]
+  },
+  "DJT10": {
+   "club": "DJ T10",
+   "clubId": 1007827,
+   "series": [
+    {
+     "series": "DJ T10 2024 - U9",
+     "matches": 5,
+     "innings": 5,
+     "notOuts": 4,
+     "runs": 133,
+     "balls": 77,
+     "avg": 133.0,
+     "sr": 172.73,
+     "hs": 62,
+     "hundreds": 0,
+     "fifties": 1,
+     "twentyFives": 0,
+     "ducks": 0,
+     "fours": 25,
+     "sixes": 2
+    }
+   ]
+  },
+  "LionsCricket": {
+   "club": "Lions Club League 2026/27 (Exaze Sandton Tigers Blaze)",
+   "clubId": 18896,
+   "series": [
+    {
+     "series": "Jozi Cup 2026 Fifth Edition - Jozi Cup U11 2026",
+     "matches": 7,
+     "innings": 7,
+     "notOuts": 1,
+     "runs": 47,
+     "balls": 88,
+     "avg": 7.83,
+     "sr": 53.41,
+     "hs": 15,
+     "hundreds": 0,
+     "fifties": 0,
+     "twentyFives": 0,
+     "ducks": 2,
+     "fours": 5,
+     "sixes": 0
+    },
+    {
+     "series": "Lions Club Junior 2025/2026 - U11 Club Junior Premier",
+     "matches": 1,
+     "innings": 1,
+     "notOuts": 0,
+     "runs": 0,
+     "balls": 2,
+     "avg": 0.0,
+     "sr": 0.0,
+     "hs": 0,
+     "hundreds": 0,
+     "fifties": 0,
+     "twentyFives": 0,
+     "ducks": 1,
+     "fours": 0,
+     "sixes": 0
+    },
+    {
+     "series": "Jozi Cup 2025 Fourth Edition - Jozi Cup U11 2025",
+     "matches": 6,
+     "innings": 6,
+     "notOuts": 0,
+     "runs": 122,
+     "balls": 178,
+     "avg": 20.33,
+     "sr": 68.54,
+     "hs": 35,
+     "hundreds": 0,
+     "fifties": 0,
+     "twentyFives": 2,
+     "ducks": 0,
+     "fours": 17,
+     "sixes": 1
+    }
+   ],
+   "bowling": [
+    {
+     "series": "Jozi Cup 2026 Fifth Edition - Jozi Cup U11 2026",
+     "overs": 0,
+     "runs": 0,
+     "wickets": 0,
+     "catches": 1
+    },
+    {
+     "series": "Lions Club Junior 2025/2026 - U11 Club Junior Premier",
+     "overs": 0.5,
+     "runs": 7,
+     "wickets": 0,
+     "catches": 1
+    },
+    {
+     "series": "Jozi Cup 2025 Fourth Edition - Jozi Cup U11 2025",
+     "overs": 0,
+     "runs": 0,
+     "wickets": 0,
+     "catches": 1
+    }
+   ]
+  }
+ }
 }
