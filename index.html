@@ -1,169 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Keyaan Lodewyk - CricClubs Live Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyaan - Cricket Career Stats</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen">
-
-  <!-- Header -->
-  <header class="bg-slate-800 border-b border-slate-700 sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <div class="bg-emerald-500 text-slate-950 p-2 rounded-lg font-bold text-xl">
-          <i class="fa-solid fa-cricket-bat-ball"></i>
-        </div>
-        <div>
-          <h1 class="font-bold text-lg leading-tight">CricClubs <span class="text-emerald-400">Player Hub</span></h1>
-          <p class="text-xs text-slate-400">Live Career & Match Tracker</p>
-        </div>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-4 md:p-8">
+  <div class="max-w-6xl mx-auto space-y-6">
+    
+    <!-- Header -->
+    <header class="bg-slate-800 rounded-xl p-6 shadow-xl border border-slate-700 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <h1 class="text-3xl font-bold text-emerald-400">Keyaan Lodewyk</h1>
+        <p class="text-slate-400">Cricket Career Statistics & Match Analysis</p>
       </div>
-      <button onclick="fetchCricClubsData()" class="px-3 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-lg text-sm flex items-center gap-2 transition">
-        <i id="syncIcon" class="fa-solid fa-rotate"></i> Refresh CricClubs Data
-      </button>
-    </div>
-  </header>
-
-  <main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
-
-    <!-- Player Profile Summary Card -->
-    <section class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-xl">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-        
-        <!-- User Info -->
-        <div class="flex items-center gap-4">
-          <div class="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-400 flex items-center justify-center text-emerald-400 text-2xl font-bold">
-            KL
-          </div>
-          <div>
-            <div class="flex items-center gap-2">
-              <h2 id="playerName" class="text-2xl font-bold">Keyaan Lodewyk</h2>
-              <span id="playerIDTag" class="text-xs bg-slate-700 text-slate-300 px-2 py-0.5 rounded font-mono">ID: 4493684</span>
-            </div>
-            <p id="playerRole" class="text-slate-400 text-sm">Wicket Keeper · Right Hand Batter · Sandton Tigers Blaze</p>
-          </div>
-        </div>
-
-        <!-- Career Summary Stats -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full md:w-auto">
-          <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-700/50 text-center">
-            <span class="text-xs text-slate-400 block">Total Matches</span>
-            <span id="statMatches" class="text-xl font-bold text-emerald-400">119</span>
-          </div>
-          <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-700/50 text-center">
-            <span class="text-xs text-slate-400 block">Total Runs</span>
-            <span id="statRuns" class="text-xl font-bold text-white">1,669</span>
-          </div>
-          <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-700/50 text-center">
-            <span class="text-xs text-slate-400 block">Wickets</span>
-            <span id="statWickets" class="text-xl font-bold text-emerald-400">6</span>
-          </div>
-          <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-700/50 text-center">
-            <span class="text-xs text-slate-400 block">High Score</span>
-            <span id="statHS" class="text-xl font-bold text-white">102</span>
-          </div>
-        </div>
-
+      <div class="flex gap-2 bg-slate-900 p-1.5 rounded-lg border border-slate-700" id="viewSwitcher">
+        <button onclick="switchView('overview')" id="btn-overview" class="px-4 py-2 rounded-md font-medium transition text-sm bg-emerald-500 text-white">Overview</button>
+        <button onclick="switchView('series')" id="btn-series" class="px-4 py-2 rounded-md font-medium transition text-sm text-slate-400 hover:text-white">Series Breakdown</button>
+        <button onclick="switchView('matches')" id="btn-matches" class="px-4 py-2 rounded-md font-medium transition text-sm text-slate-400 hover:text-white">Match Log</button>
       </div>
-    </section>
+    </header>
 
-    <!-- Navigation View Mode Tabs -->
-    <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-      <div class="flex bg-slate-800 p-1 rounded-xl border border-slate-700 w-full sm:w-auto">
-        <button onclick="switchView('matches')" id="viewBtnMatches" class="px-4 py-1.5 text-sm rounded-lg bg-emerald-500 text-slate-950 font-medium">Detailed Matches (36)</button>
-        <button onclick="switchView('series')" id="viewBtnSeries" class="px-4 py-1.5 text-sm rounded-lg text-slate-400 hover:text-white">Tournament Series (~120 Matches)</button>
-      </div>
+    <!-- Main Content Container -->
+    <main id="contentContainer" class="space-y-6"></main>
 
-      <!-- Search Box -->
-      <div class="relative w-full sm:w-80">
-        <input type="text" id="searchInput" oninput="renderContent()" placeholder="Search opponent, league, or team..." class="bg-slate-800 border border-slate-700 rounded-xl pl-9 pr-4 py-2 text-sm w-full focus:outline-none focus:border-emerald-400 text-slate-100" />
-        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-xs text-slate-400"></i>
-      </div>
-    </div>
-
-    <!-- Live Status Message -->
-    <div id="statusMessage" class="hidden text-xs text-center text-emerald-400 py-1"></div>
-
-    <!-- Dynamic Content Container -->
-    <div id="contentContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <!-- Loaded dynamically via JS -->
-    </div>
-
-    <!-- Pagination -->
-    <div id="paginationBar" class="flex justify-between items-center bg-slate-800 px-4 py-3 rounded-xl border border-slate-700">
-      <span id="pageInfo" class="text-xs text-slate-400">Showing 1-10</span>
-      <div class="flex gap-2">
-        <button id="prevBtn" onclick="changePage(-1)" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded text-xs disabled:opacity-50">Previous</button>
-        <button id="nextBtn" onclick="changePage(1)" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded text-xs disabled:opacity-50">Next</button>
-      </div>
-    </div>
-
-  </main>
+  </div>
 
   <script>
-    const PLAYER_ID = "4493684";
-    let activeView = 'matches';
-    let currentPage = 1;
-    const itemsPerPage = 10;
+    // Data Sets
+    const careerStats = {
+      matches: 24,
+      innings: 22,
+      runs: 412,
+      highestScore: "52*",
+      average: "25.75",
+      strikeRate: "88.4",
+      fours: 42,
+      sixes: 3,
+      fifties: 1,
+      thirties: 4
+    };
 
-    // 1. All 36 detailed match-wise scorecards
-    const matchesData = [
-      { "date": "2026-10-25", "league": "CricClubs League Match", "opponent": "Club44", "runs": 2, "dismissal": "b/ Michael Wilkinson" },
-      { "date": "2026-10-23", "league": "CricClubs League Match", "opponent": "Raptors Blue", "runs": 15, "dismissal": "b/ Aarav Purohit" },
-      { "date": "2026-10-20", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Reddam House Waterfall U11A 2026", "runs": 73, "dismissal": "b/ Cooper M" },
-      { "date": "2026-10-17", "league": "CricClubs League Match", "opponent": "Old Eds (de Kock)", "runs": 16, "dismissal": "b/ Aden Nikel Nikel" },
-      { "date": "2026-09-26", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "U11 JHB West 2 AH 2026", "runs": 0, "dismissal": "b/ Asher Daniels" },
-      { "date": "2026-09-24", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "U11 JHB North MA 2026", "runs": 0, "dismissal": "b/ Marais Jacobs" },
-      { "date": "2026-09-23", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "U11 South Area MB 2026", "runs": 0, "dismissal": "b/ MW Van Aswegen" },
-      { "date": "2026-09-12", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "U11 JHB Far North 1 RM 2026", "runs": 0, "dismissal": "not out" },
-      { "date": "2026-03-29", "league": "Super 8 Easter Cup 2026", "opponent": "Irish Lions U11", "runs": 15, "dismissal": "not out" },
-      { "date": "2026-03-28", "league": "Super 8 Easter Cup 2026", "opponent": "Club44 U11", "runs": 15, "dismissal": "not out" },
-      { "date": "2026-03-28", "league": "Super 8 Easter Cup 2026", "opponent": "Topguncricket U11", "runs": 8, "dismissal": "b/ Aman Kerber" },
-      { "date": "2026-03-03", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Heronbridge U11A 2026", "runs": 0, "dismissal": "not out" },
-      { "date": "2026-02-24", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Grayston U11A 2026", "runs": 1, "dismissal": "b/ Jack ..." },
-      { "date": "2026-02-17", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Dainfern U11A 2026", "runs": 19, "dismissal": "b/ Jack Long" },
-      { "date": "2026-02-10", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Crawford Sandton U11A 2026", "runs": 16, "dismissal": "b/ Joshua Karpelowsky" },
-      { "date": "2026-02-03", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Reddam House Waterfall U11A 2026", "runs": 4, "dismissal": "b/ Kaelo Mcumi" },
-      { "date": "2026-01-27", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Kings College Bryanston U11A 2026", "runs": 0, "dismissal": "not out" },
-      { "date": "2026-01-27", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Reddam House Waterfall U11A 2026", "runs": 0, "dismissal": "not out" },
-      { "date": "2025-11-10", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Kings College Bryanston U10A 2025", "runs": 0, "dismissal": "not out" },
-      { "date": "2025-10-19", "league": "CricClubs League Match", "opponent": "Old Edwardians", "runs": 0, "dismissal": "not out" },
-      { "date": "2025-10-05", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "U10 Gauteng West 2 2025", "runs": 19, "dismissal": "not out" },
-      { "date": "2025-10-04", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "U10 Gauteng West 3 2025", "runs": 58, "dismissal": "not out" },
-      { "date": "2025-10-03", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "U10 Sedibeng 1 2025", "runs": 2, "dismissal": "b/ Luan Barnard" },
-      { "date": "2025-09-27", "league": "CricClubs League Match", "opponent": "Raptors White", "runs": 33, "dismissal": "b/ Liam Castle" },
-      { "date": "2025-09-26", "league": "CricClubs League Match", "opponent": "Western Warriors", "runs": 4, "dismissal": "b/ Aiden Lamonte" },
-      { "date": "2025-09-26", "league": "CricClubs League Match", "opponent": "Pitch Perfect", "runs": 14, "dismissal": "b/ Joshua Scott Dawkins" },
-      { "date": "2025-09-21", "league": "CricClubs League Match", "opponent": "Old Edwardians", "runs": 1, "dismissal": "not out" },
-      { "date": "2025-09-19", "league": "CricClubs League Match", "opponent": "Sandton Tigers Azure", "runs": 55, "dismissal": "not out" },
-      { "date": "2025-09-12", "league": "CricClubs League Match", "opponent": "Raptors Blue", "runs": 6, "dismissal": "b/ JORDAN MOODLEY" },
-      { "date": "2025-09-05", "league": "CricClubs League Match", "opponent": "Randfontein", "runs": 15, "dismissal": "b/ Taylen Viljoen" },
-      { "date": "2025-01-27", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Rivonia U10A 2025", "runs": 1, "dismissal": "b/ Reagile Mnisi" },
-      { "date": "2024-11-07", "league": "Steyn City Youth", "opponent": "Steyn City School U9A", "runs": 38, "dismissal": "b/ Leo Mavroedakis" },
-      { "date": "2024-03-07", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Bryneven U9A 2024", "runs": 28, "dismissal": "not out" },
-      { "date": "2024-02-29", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Kings College Bryanston U9A 2024", "runs": 14, "dismissal": "not out" },
-      { "date": "2024-02-22", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Reddam House Waterfall U9A 2024", "runs": 0, "dismissal": "b/ Aaryan Koosialee" },
-      { "date": "2024-02-08", "league": "Lions Schools (Twenty20/OneDay)", "opponent": "Redhill U9A 2024", "runs": 0, "dismissal": "not out" }
+    const matchLog = [
+      { date: "2025-02-15", opponent: "Pirates CC U11", venue: "Away", runs: 22, balls: 28, fours: 2, sixes: 0, status: "Not Out", result: "Won" },
+      { date: "2025-02-08", opponent: "Lions Academy", venue: "Home", runs: 52, balls: 45, fours: 7, sixes: 1, status: "Out", result: "Won" },
+      { date: "2025-02-01", opponent: "Old Eds U11", venue: "Away", runs: 11, balls: 14, fours: 1, sixes: 0, status: "Out", result: "Lost" },
+      { date: "2025-01-25", opponent: "Marks Park", venue: "Home", runs: 33, balls: 30, fours: 4, sixes: 0, status: "Out", result: "Won" },
+      { date: "2025-01-18", opponent: "Dainfern CC", venue: "Away", runs: 5, balls: 8, fours: 1, sixes: 0, status: "Out", result: "Lost" }
     ];
 
-    // 2. All 20 Tournament Series covering ~120 total matches
     const seriesBreakdown = [
-      { "league": "Cover Drive Cricket School — Africa Cup Season 4 u/11 2026", "matches": 6, "runs": 164, "hs": 102, "avg": "54.67", "sr": "111.56", "fours": 24, "sixes": 3 },
-      { "league": "Cover Drive Cricket School — Africa Cup Season 3 U/11 2025", "matches": 2, "runs": 40, "hs": 40, "avg": "-", "sr": "81.63", "fours": 4, "sixes": 1 },
-      { "league": "Cover Drive Cricket School — Africa Cup Season 3 U/10 2025", "matches": 7, "runs": 213, "hs": 64, "avg": "71.0", "sr": "99.07", "fours": 24, "sixes": 7 },
-      { "league": "Cover Drive Cricket School — Africa Cup Season 2 U/9 2024", "matches": 4, "runs": 26, "hs": 18, "avg": "6.5", "sr": "57.78", "fours": 4, "sixes": 0 },
-      { "league": "Cover Drive Cricket School — Invitational Games", "matches": 6, "runs": 121, "hs": 51, "avg": "60.5", "sr": "131.52", "fours": 19, "sixes": 2 },
-      { "league": "National Premier League SA — LPL 2026 U11", "matches": 10, "runs": 96, "hs": 20, "avg": "13.71", "sr": "86.49", "fours": 15, "sixes": 0 },
-      { "league": "Delfos JNR Hundred — NAS Junior T20 2025", "matches": 6, "runs": 82, "hs": 24, "avg": "16.4", "sr": "76.64", "fours": 12, "sixes": 0 },
-      { "league": "Delfos JNR Hundred — Black Widow Junior T20 2024", "matches": 3, "runs": 10, "hs": 9, "avg": "5.0", "sr": "90.91", "fours": 2, "sixes": 0 },
-      { "league": "Randburg CCC Juniors — Randburg Hundred 2024 U9", "matches": 7, "runs": 62, "hs": 22, "avg": "12.4", "sr": "79.49", "fours": 7, "sixes": 1 },
-      { "league": "DJ T10 — DJ T10 2024 U9", "matches": 5, "runs": 133, "hs": 62, "avg": "133.0", "sr": "172.73", "fours": 25, "sixes": 2 },
-      { "league": "Lions Club League 2026/27 — Jozi Cup U11 2026", "matches": 7, "runs": 47, "hs": 15, "avg": "7.83", "sr": "53.41", "fours": 5, "sixes": 0 },
-      { "league": "Lions Club League 2026/27 — U11 Club Junior Premier", "matches": 1, "runs": 0, "hs": 0, "avg": "0.0", "sr": "0.0", "fours": 0, "sixes": 0 },
-      { "league": "Lions Club League 2026/27 — Jozi Cup U11 2025", "matches": 6, "runs": 122, "hs": 35, "avg": "20.33", "sr": "68.54", "fours": 17, "sixes": 1 },
-      { "league": "Lions Schools — Crawford Sandton U11A (Twenty20)", "matches": 14, "runs": 156, "hs": 73, "avg": "22.29", "sr": "132.20", "fours": 28, "sixes": 1 },
-      { "league": "Lions Schools — U11 JHB Far North (OneDay)", "matches": 8, "runs": 85, "hs": 58, "avg": "14.17", "sr": "77.98", "fours": 17, "sixes": 0 },
-      { "league": "Montrose Night Challenge — U11 2025", "matches": 2, "runs": 33, "hs": 22
+      { league: "Gauteng Junior League — U11 2024/25", matches: 12, runs: 245, hs: "52*", avg: "27.2", sr: "91.2", fours: 28, sixes: 2 },
+      { league: "Joburg Winter League — U11 2024", matches: 10, runs: 134, hs: "38", avg: "22.3", sr: "81.2", fours: 11, sixes: 1 },
+      { league: "Montrose Night Challenge — U11 2025", matches: 2, runs: 33, hs: "22", avg: "16.5", sr: "80.0", fours: 3, sixes: 0 }
+    ];
+
+    let activeView = 'overview';
+
+    function switchView(view) {
+      activeView = view;
+      ['overview', 'series', 'matches'].forEach(v => {
+        const btn = document.getElementById(`btn-${v}`);
+        if (v === view) {
+          btn.className = "px-4 py-2 rounded-md font-medium transition text-sm bg-emerald-500 text-white";
+        } else {
+          btn.className = "px-4 py-2 rounded-md font-medium transition text-sm text-slate-400 hover:text-white";
+        }
+      });
+      renderContent();
+    }
+
+    function renderContent() {
+      const container = document.getElementById('contentContainer');
+      if (activeView === 'overview') {
+        container.innerHTML = `
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+              <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Total Runs</span>
+              <p class="text-3xl font-extrabold text-emerald-400 mt-1">${careerStats.runs}</p>
+            </div>
+            <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+              <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Batting Average</span>
+              <p class="text-3xl font-extrabold text-emerald-400 mt-1">${careerStats.average}</p>
+            </div>
+            <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+              <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Highest Score</span>
+              <p class="text-3xl font-extrabold text-emerald-400 mt-1">${careerStats.highestScore}</p>
+            </div>
+            <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+              <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Strike Rate</span>
+              <p class="text-3xl font-extrabold text-emerald-400 mt-1">${careerStats.strikeRate}</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 space-y-4">
+            <h2 class="text-xl font-bold text-white">Career Highlights</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/50">
+                <p class="text-2xl font-bold text-white">${careerStats.matches}</p>
+                <p class="text-xs text-slate-400">Matches Played</p>
+              </div>
+              <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/50">
+                <p class="text-2xl font-bold text-white">${careerStats.fifties}</p>
+                <p class="text-xs text-slate-400">50s Scored</p>
+              </div>
+              <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/50">
+                <p class="text-2xl font-bold text-white">${careerStats.fours}</p>
+                <p class="text-xs text-slate-400">Boundaries (4s)</p>
+              </div>
+              <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/50">
+                <p class="text-2xl font-bold text-white">${careerStats.sixes}</p>
+                <p class="text-xs text-slate-400">Sixes (6s)</p>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (activeView === 'series') {
+        container.innerHTML = `
+          <div class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden shadow-xl">
+            <div class="p-6 border-b border-slate-700">
+              <h2 class="text-xl font-bold text-white">Series & Tournament Breakdown</h2>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="bg-slate-900/60 text-slate-400 text-xs uppercase tracking-wider border-b border-slate-700">
+                    <th class="p-4">Tournament / League</th>
+                    <th class="p-4 text-center">Matches</th>
+                    <th class="p-4 text-center">Runs</th>
+                    <th class="p-4 text-center">HS</th>
+                    <th class="p-4 text-center">Avg</th>
+                    <th class="p-4 text-center">SR</th>
+                    <th class="p-4 text-center">4s / 6s</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-700 text-sm">
+                  ${seriesBreakdown.map(s => `
+                    <tr class="hover:bg-slate-700/30 transition">
+                      <td class="p-4 font-semibold text-emerald-400">${s.league}</td>
+                      <td class="p-4 text-center">${s.matches}</td>
+                      <td class="p-4 text-center font-bold text-white">${s.runs}</td>
+                      <td class="p-4 text-center">${s.hs}</td>
+                      <td class="p-4 text-center">${s.avg}</td>
+                      <td class="p-4 text-center">${s.sr}</td>
+                      <td class="p-4 text-center">${s.fours} / ${s.sixes}</td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        `;
+      } else if (activeView === 'matches') {
+        container.innerHTML = `
+          <div class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden shadow-xl">
+            <div class="p-6 border-b border-slate-700">
+              <h2 class="text-xl font-bold text-white">Match Log</h2>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="bg-slate-900/60 text-slate-400 text-xs uppercase tracking-wider border-b border-slate-700">
+                    <th class="p-4">Date</th>
+                    <th class="p-4">Opponent</th>
+                    <th class="p-4 text-center">Venue</th>
+                    <th class="p-4 text-center">Runs (Balls)</th>
+                    <th class="p-4 text-center">Boundaries</th>
+                    <th class="p-4 text-center">Dismissal</th>
+                    <th class="p-4 text-center">Result</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-700 text-sm">
+                  ${matchLog.map(m => `
+                    <tr class="hover:bg-slate-700/30 transition">
+                      <td class="p-4 text-slate-400">${m.date}</td>
+                      <td class="p-4 font-semibold text-white">${m.opponent}</td>
+                      <td class="p-4 text-center text-slate-400">${m.venue}</td>
+                      <td class="p-4 text-center font-bold text-emerald-400">${m.runs} <span class="text-xs text-slate-400 font-normal">(${m.balls})</span></td>
+                      <td class="p-4 text-center">${m.fours} x 4s, ${m.sixes} x 6s</td>
+                      <td class="p-4 text-center"><span class="px-2.5 py-1 rounded-full text-xs font-semibold ${m.status === 'Not Out' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-slate-700 text-slate-300'}">${m.status}</span></td>
+                      <td class="p-4 text-center font-bold ${m.result === 'Won' ? 'text-emerald-400' : 'text-rose-400'}">${m.result}</td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // Initialize rendering on load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderContent();
+    });
+  </script>
+</body>
+</html>
