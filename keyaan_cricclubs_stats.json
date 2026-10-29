@@ -5,8 +5,8 @@
   "battingStyle": "Right Hand Batter (Top Order)",
   "bowlingStyle": "Right Arm Off Spin",
   "jerseyNumber": "12",
-  "matches": 119,
-  "runs": 1669,
+  "matches": 120,
+  "runs": 1688,
   "wickets": 6,
   "currentTeam": "Sandton Tigers Blaze"
  },
@@ -241,21 +241,21 @@
     {
      "teamName": "Crawford Sandton U11A 2026",
      "seriesType": "Twenty20",
-     "matches": 14,
-     "innings": 9,
-     "runsScored": 156,
-     "ballsFaced": 118,
-     "average": "22.29",
-     "strikeRate": "132.20",
+     "matches": 15,
+     "innings": 10,
+     "runsScored": 175,
+     "ballsFaced": 131,
+     "average": "21.88",
+     "strikeRate": "133.59",
      "highestScore": 73,
-     "fours": 28,
+     "fours": 31,
      "sixers": 1,
      "notOuts": 2,
      "ducks": 1,
      "twentyFives": 1,
      "fifties": 1,
      "hundreds": 0,
-     "points": 265
+     "points": 291
     },
     {
      "teamName": "U11 JHB Far North 4 TM 2026",
@@ -281,7 +281,7 @@
     {
      "teamName": "Crawford Sandton U11A 2026",
      "seriesType": "Twenty20",
-     "matches": 14,
+     "matches": 15,
      "innings": 5,
      "wickets": 2,
      "overs": "7.5",
@@ -417,6 +417,12 @@
    ]
   },
   {
+   "club": "GMHPA Winter League",
+   "city": "Johannesburg",
+   "batting": [],
+   "bowling": []
+  },
+  {
    "club": "National Premier League South Africa",
    "city": "Johannesburg",
    "batting": [
@@ -444,10 +450,10 @@
   },
   {
    "club": "Super 8 Easter cup 2026",
-   "city": "Bryanston",
+   "city": "Johannesburg",
    "batting": [
     {
-     "teamName": "Boundary Breakers Academy U11",
+     "teamName": null,
      "seriesType": "Ten10",
      "matches": 3,
      "innings": 3,
@@ -806,30 +812,30 @@
  "lionsSchools": {
   "batting": {
    "Twenty20": {
-    "matches": 14,
-    "innings": 9,
+    "matches": 15,
+    "innings": 10,
     "notOuts": 2,
-    "runsScored": 156,
-    "ballsFaced": 118,
-    "average": "22.29",
-    "strikeRate": "132.20",
+    "runsScored": 175,
+    "ballsFaced": 131,
+    "average": "21.88",
+    "strikeRate": "133.59",
     "highestScore": 73,
-    "fours": 28,
+    "fours": 31,
     "sixers": 1,
     "ducks": 1,
     "twentyFives": 1,
     "fifties": 1,
     "hundreds": 0,
-    "points": 265
+    "points": 291
    },
    "Twenty20_yearWise": [
     {
      "year": 2026,
-     "m": 8,
-     "r": 113,
+     "m": 9,
+     "r": 132,
      "hs": 73,
-     "avg": "22.60",
-     "sr": "148.68"
+     "avg": "22.00",
+     "sr": "148.31"
     },
     {
      "year": 2025,
@@ -886,130 +892,158 @@
   },
   "matchWise": [
    {
+    "date": "10/27/2026",
+    "vs": "Steyn City U11A 2026",
+    "runs": 19,
+    "dismissedBy": "Teague Hindshaw",
+    "outType": "ro"
+   },
+   {
     "date": "10/20/2026",
     "vs": "Reddam House Waterfall U11A 2026",
     "runs": 73,
-    "dismissedBy": "Cooper M"
+    "dismissedBy": "Cooper M",
+    "outType": "b"
    },
    {
     "date": "09/26/2026",
     "vs": "U11 JHB West 2 AH 2026",
     "runs": 0,
-    "dismissedBy": "Asher Daniels"
+    "dismissedBy": "Asher Daniels",
+    "outType": "ct"
    },
    {
     "date": "09/24/2026",
     "vs": "U11 JHB North MA 2026",
     "runs": 0,
-    "dismissedBy": "Marais Jacobs"
+    "dismissedBy": "Marais Jacobs",
+    "outType": "lbw"
    },
    {
     "date": "09/23/2026",
     "vs": "U11 South Area MB 2026",
     "runs": 0,
-    "dismissedBy": "MW Van Aswegen"
+    "dismissedBy": "MW Van Aswegen",
+    "outType": "ct"
    },
    {
     "date": "09/12/2026",
     "vs": "U11 JHB Far North 1 RM 2026",
     "runs": 0,
-    "dismissedBy": null
+    "dismissedBy": null,
+    "outType": null
    },
    {
     "date": "03/03/2026",
     "vs": "Heronbridge U11A 2026",
     "runs": 0,
-    "dismissedBy": null
+    "dismissedBy": null,
+    "outType": null
    },
    {
     "date": "02/24/2026",
     "vs": "Grayston U11A 2026",
     "runs": 1,
-    "dismissedBy": "Jack ..."
+    "dismissedBy": "Jack ...",
+    "outType": "b"
    },
    {
     "date": "02/17/2026",
     "vs": "Dainfern U11A 2026",
     "runs": 19,
-    "dismissedBy": "Jack Long"
+    "dismissedBy": "Jack Long",
+    "outType": "b"
    },
    {
     "date": "02/10/2026",
     "vs": "Crawford Sandton U11A 2026",
     "runs": 16,
-    "dismissedBy": "Joshua Karpelowsky"
+    "dismissedBy": "Joshua Karpelowsky",
+    "outType": "ctw"
    },
    {
     "date": "02/03/2026",
     "vs": "Reddam House Waterfall U11A 2026",
     "runs": 4,
-    "dismissedBy": "Kaelo Mcumi"
+    "dismissedBy": "Kaelo Mcumi",
+    "outType": "ct"
    },
    {
     "date": "01/27/2026",
     "vs": "Kings College Bryanston U11A 2026",
     "runs": 0,
-    "dismissedBy": null
+    "dismissedBy": null,
+    "outType": null
    },
    {
     "date": "01/27/2026",
     "vs": "Reddam House Waterfall U11A 2026",
     "runs": 0,
-    "dismissedBy": null
+    "dismissedBy": null,
+    "outType": null
    },
    {
     "date": "11/10/2025",
     "vs": "Kings College Bryanston U10A 2025",
     "runs": 0,
-    "dismissedBy": null
+    "dismissedBy": null,
+    "outType": null
    },
    {
     "date": "10/05/2025",
     "vs": "U10 Gauteng West 2 2025",
     "runs": 19,
-    "dismissedBy": null
+    "dismissedBy": null,
+    "outType": null
    },
    {
     "date": "10/04/2025",
     "vs": "U10 Gauteng West 3 2025",
     "runs": 58,
-    "dismissedBy": null
+    "dismissedBy": null,
+    "outType": null
    },
    {
     "date": "10/03/2025",
     "vs": "U10 Sedibeng 1 2025",
     "runs": 2,
-    "dismissedBy": "Luan Barnard"
+    "dismissedBy": "Luan Barnard",
+    "outType": "b"
    },
    {
     "date": "01/27/2025",
     "vs": "Rivonia U10A 2025",
     "runs": 1,
-    "dismissedBy": "Reagile Mnisi"
+    "dismissedBy": "Reagile Mnisi",
+    "outType": "b"
    },
    {
     "date": "03/07/2024",
     "vs": "Bryneven U9A 2024",
     "runs": 28,
-    "dismissedBy": null
+    "dismissedBy": null,
+    "outType": null
    },
    {
     "date": "02/29/2024",
     "vs": "Kings College Bryanston U9A 2024",
     "runs": 14,
-    "dismissedBy": null
+    "dismissedBy": null,
+    "outType": null
    },
    {
     "date": "02/22/2024",
     "vs": "Reddam House Waterfall U9A 2024",
     "runs": 0,
-    "dismissedBy": "Aaryan Koosialee"
+    "dismissedBy": "Aaryan Koosialee",
+    "outType": "b"
    },
    {
     "date": "02/08/2024",
     "vs": "Redhill U9A 2024",
     "runs": 0,
-    "dismissedBy": null
+    "dismissedBy": null,
+    "outType": null
    }
   ],
   "fielding": [
@@ -1072,7 +1106,7 @@
     "fiveWickets": 0,
     "firstName": "Keyaan",
     "lastName": "Lodewyk",
-    "matches": 8,
+    "matches": 9,
     "innings": 1,
     "maidens": 0,
     "wickets": 1,
@@ -1103,9 +1137,9 @@
     "bbfString": "21/1",
     "overs": "1.5",
     "gender": null,
+    "matchYear": "2026",
     "strikeRate": "11.0",
-    "average": "21.00",
-    "matchYear": "2026"
+    "average": "21.00"
    },
    {
     "playerID": 4493684,
@@ -1147,9 +1181,9 @@
     "bbfString": "0/0",
     "overs": "1",
     "gender": null,
+    "matchYear": "2025",
     "strikeRate": "0.0",
-    "average": "0",
-    "matchYear": "2025"
+    "average": "0"
    },
    {
     "playerID": 4493684,
@@ -1191,9 +1225,9 @@
     "bbfString": "12/1",
     "overs": "5",
     "gender": null,
+    "matchYear": "2024",
     "strikeRate": "30.0",
-    "average": "21.00",
-    "matchYear": "2024"
+    "average": "21.00"
    }
   ]
  },
@@ -1232,7 +1266,8 @@
     "date": "11/07/2024",
     "vs": "Steyn City School U9A",
     "runs": 38,
-    "dismissedBy": "Leo Mavroedakis"
+    "dismissedBy": "Leo Mavroedakis",
+    "outType": null
    }
   ]
  },
@@ -1271,19 +1306,22 @@
     "date": "03/29/2026",
     "vs": "Irish Lions U11",
     "runs": 15,
-    "dismissedBy": null
+    "dismissedBy": null,
+    "outType": null
    },
    {
     "date": "03/28/2026",
     "vs": "Club44 U11",
     "runs": 15,
-    "dismissedBy": null
+    "dismissedBy": null,
+    "outType": "rt"
    },
    {
     "date": "03/28/2026",
     "vs": "Topguncricket U11",
     "runs": 8,
-    "dismissedBy": "Aman Kerber"
+    "dismissedBy": "Aman Kerber",
+    "outType": "b"
    }
   ]
  },
@@ -1292,7 +1330,7 @@
    "caught": 5,
    "stumped": 0,
    "lbw": 1,
-   "runout": 0,
+   "runout": 1,
    "caughtBehind": 1,
    "bowled": 6,
    "objectingField": 0,
@@ -1304,23 +1342,23 @@
   "runsPerBallsFaced": [
    {
     "runs": "0",
-    "noOfTimes": 117,
+    "noOfTimes": 120,
     "total": 0
    },
    {
     "runs": "1",
-    "noOfTimes": 45,
-    "total": 45
+    "noOfTimes": 50,
+    "total": 50
    },
    {
     "runs": "2",
-    "noOfTimes": 5,
-    "total": 10
+    "noOfTimes": 6,
+    "total": 12
    },
    {
     "runs": "4",
-    "noOfTimes": 45,
-    "total": 180
+    "noOfTimes": 48,
+    "total": 192
    },
    {
     "runs": "6",
@@ -1330,7 +1368,7 @@
   ],
   "outsByScoreBand": {
    "0-10": 9,
-   "10-20": 3,
+   "10-20": 4,
    "40-50": 1
   }
  },
@@ -1373,67 +1411,78 @@
     "date": "10/25/2026",
     "vs": "Club44",
     "runs": 2,
-    "dismissedBy": "Michael Wilkinson"
+    "dismissedBy": "Michael Wilkinson",
+    "outType": "b"
    },
    {
     "date": "10/23/2026",
     "vs": "Raptors Blue",
     "runs": 15,
-    "dismissedBy": "Aarav Purohit"
+    "dismissedBy": "Aarav Purohit",
+    "outType": "ct"
    },
    {
     "date": "10/17/2026",
     "vs": "Old Eds (de Kock)",
     "runs": 16,
-    "dismissedBy": "Aden Nikel Nikel"
+    "dismissedBy": "Aden Nikel Nikel",
+    "outType": "b"
    },
    {
     "date": "10/19/2025",
     "vs": "Old Edwardians",
     "runs": 0,
-    "dismissedBy": null
+    "dismissedBy": null,
+    "outType": null
    },
    {
     "date": "09/27/2025",
     "vs": "Raptors White",
     "runs": 33,
-    "dismissedBy": "Liam Castle"
+    "dismissedBy": "Liam Castle",
+    "outType": "ct"
    },
    {
     "date": "09/26/2025",
     "vs": "Western Warriors",
     "runs": 4,
-    "dismissedBy": "Aiden Lamonte"
+    "dismissedBy": "Aiden Lamonte",
+    "outType": "b"
    },
    {
     "date": "09/26/2025",
     "vs": "Pitch Perfect",
     "runs": 14,
-    "dismissedBy": "Joshua Scott Dawkins"
+    "dismissedBy": "Joshua Scott Dawkins",
+    "outType": "b"
    },
    {
     "date": "09/21/2025",
     "vs": "Old Edwardians",
     "runs": 1,
-    "dismissedBy": null
+    "dismissedBy": null,
+    "outType": "ro"
    },
    {
     "date": "09/19/2025",
     "vs": "Sandton Tigers Azure",
     "runs": 55,
-    "dismissedBy": null
+    "dismissedBy": null,
+    "outType": null
    },
    {
     "date": "09/12/2025",
     "vs": "Raptors Blue",
     "runs": 6,
-    "dismissedBy": "JORDAN MOODLEY"
+    "dismissedBy": "JORDAN MOODLEY",
+    "outType": "b"
    },
    {
     "date": "09/05/2025",
     "vs": "Randfontein",
     "runs": 15,
-    "dismissedBy": "Taylen Viljoen"
+    "dismissedBy": "Taylen Viljoen",
+    "outType": "b"
    }
   ]
  },
@@ -1550,14 +1599,14 @@
      "series": "Africa Cup Season 3 U/11 2025 - PLATINUM TROPHY",
      "matches": 2,
      "innings": 2,
-     "overs": 4.0,
+     "overs": 4,
      "runs": 22,
      "wickets": 1,
      "bbf": "13/1",
      "maidens": 0,
-     "ave": 22.0,
+     "ave": 22,
      "econ": 5.5,
-     "sr": 24.0,
+     "sr": 24,
      "4W": 0,
      "5W": 0,
      "wides": 4,
@@ -1584,13 +1633,13 @@
      "series": "Africa Cup Season 2 U/9 2024",
      "matches": 4,
      "innings": 2,
-     "overs": 3.0,
+     "overs": 3,
      "runs": 24,
      "wickets": 0,
      "bbf": "0/0",
      "maidens": 0,
      "ave": 0.0,
-     "econ": 8.0,
+     "econ": 8,
      "sr": 0.0,
      "4W": 0,
      "5W": 0,
@@ -1601,7 +1650,7 @@
      "series": "Invitational Games",
      "matches": 6,
      "innings": 2,
-     "overs": 4.0,
+     "overs": 4,
      "runs": 15,
      "wickets": 0,
      "bbf": "0/0",
@@ -1614,7 +1663,419 @@
      "wides": 5,
      "catches": 0
     }
-   ]
+   ],
+   "matchList": [
+    {
+     "matchId": 704,
+     "description": "League: Eagles Cricket vs Stallions Cricket"
+    },
+    {
+     "matchId": 717,
+     "description": "League: Eagles Cricket vs Raptors Cricket White"
+    },
+    {
+     "matchId": 723,
+     "description": "League: Rhinos Cricket vs Eagles Cricket"
+    },
+    {
+     "matchId": 749,
+     "description": "League: Lions Cricket vs Eagles Cricket"
+    },
+    {
+     "matchId": 786,
+     "description": "Semi Final: Eagles Cricket vs Lions Cricket"
+    },
+    {
+     "matchId": 790,
+     "description": "Final: Panthers Cricket vs Eagles Cricket"
+    },
+    {
+     "matchId": 579,
+     "description": "Africa Cup Season 3 U/10 2025 vs Vi Kings Cricket Academy"
+    },
+    {
+     "matchId": 562,
+     "description": "Africa Cup Season 3 U/10 2025 vs Royal Falcons Cricket Club"
+    },
+    {
+     "matchId": 546,
+     "description": "Africa Cup Season 3 U/10 2025 vs Kyalami Cricket Club"
+    },
+    {
+     "matchId": 520,
+     "description": "Africa Cup Season 3 U/10 2025 vs Sandton Cricket Academy"
+    },
+    {
+     "matchId": 503,
+     "description": "Africa Cup Season 3 U/10 2025 vs Randburg Raptors Blue"
+    },
+    {
+     "matchId": 498,
+     "description": "Africa Cup Season 3 U/10 2025 vs Stallions Cricket Academy"
+    },
+    {
+     "matchId": 475,
+     "description": "Africa Cup Season 3 U/10 2025 vs Vi Kings Cricket Academy"
+    }
+   ],
+   "matchList_note": "13 matchIds: S3 U/10 2025 done (475,498,503,520,546,562,579); S4 2026 pending (704,717,723,749 league; 786 semi v Lions; 790 final v Panthers). Pending series pages: S4 u/11 2026 (league=45), S3 U/11 2025 Platinum, S2 U/9 2024, Invitational Games. Note: new season now exists - Africa Cup Season 5 U/11 2026 (league=49), no matches for Keyaan yet in stats tables.",
+   "matchWise": [
+    {
+     "series": "Africa Cup Season 3 U/10 2025",
+     "date": "01/19/2025",
+     "vs": "Vi Kings Cricket Academy",
+     "result": "L",
+     "pos": 1,
+     "runs": 64,
+     "notOut": false,
+     "balls": 43,
+     "sr": "148.84",
+     "fours": 6,
+     "sixes": 5,
+     "matchId": 475
+    },
+    {
+     "series": "Africa Cup Season 3 U/10 2025",
+     "date": "01/26/2025",
+     "vs": "Stallions Cricket Academy",
+     "result": "L",
+     "pos": 1,
+     "runs": 5,
+     "notOut": false,
+     "balls": 8,
+     "sr": "62.50",
+     "fours": 1,
+     "sixes": 0,
+     "matchId": 498
+    },
+    {
+     "series": "Africa Cup Season 3 U/10 2025",
+     "date": "02/02/2025",
+     "vs": "Randburg Raptors Blue",
+     "result": "W",
+     "pos": 3,
+     "runs": 48,
+     "notOut": true,
+     "balls": 46,
+     "sr": "104.35",
+     "fours": 8,
+     "sixes": 0,
+     "matchId": 503
+    },
+    {
+     "series": "Africa Cup Season 3 U/10 2025",
+     "date": "02/09/2025",
+     "vs": "Sandton Cricket Academy",
+     "result": "W",
+     "pos": 1,
+     "runs": 56,
+     "notOut": true,
+     "balls": 30,
+     "sr": "186.67",
+     "fours": 8,
+     "sixes": 2,
+     "matchId": 520
+    },
+    {
+     "series": "Africa Cup Season 3 U/10 2025",
+     "date": "02/23/2025",
+     "vs": "Kyalami Cricket Club",
+     "result": "W",
+     "pos": 5,
+     "runs": 3,
+     "notOut": true,
+     "balls": 13,
+     "sr": "23.08",
+     "fours": 0,
+     "sixes": 0,
+     "matchId": 546
+    },
+    {
+     "series": "Africa Cup Season 3 U/10 2025",
+     "date": "03/02/2025",
+     "vs": "Royal Falcons Cricket Club",
+     "result": "W",
+     "pos": 2,
+     "runs": 32,
+     "notOut": true,
+     "balls": 56,
+     "sr": "57.14",
+     "fours": 1,
+     "sixes": 0,
+     "matchId": 562
+    },
+    {
+     "series": "Africa Cup Season 3 U/10 2025",
+     "date": "03/08/2025",
+     "vs": "Vi Kings Cricket Academy",
+     "result": "L",
+     "pos": 3,
+     "runs": 5,
+     "notOut": false,
+     "balls": 19,
+     "sr": "26.32",
+     "fours": 0,
+     "sixes": 0,
+     "matchId": 579
+    },
+    {
+     "series": "Africa Cup Season 4 u/11 2026",
+     "date": "03/15/2026",
+     "vs": "Lions Cricket",
+     "result": "W",
+     "pos": 3,
+     "runs": 8,
+     "notOut": false,
+     "balls": 20,
+     "sr": "40.00",
+     "fours": 0,
+     "sixes": 0,
+     "matchId": 786
+    },
+    {
+     "series": "Africa Cup Season 4 u/11 2026",
+     "date": "03/15/2026",
+     "vs": "Panthers Cricket",
+     "result": "L",
+     "pos": 1,
+     "runs": 23,
+     "notOut": false,
+     "balls": 30,
+     "sr": "76.67",
+     "fours": 3,
+     "sixes": 0,
+     "matchId": 790
+    },
+    {
+     "series": "Africa Cup Season 4 u/11 2026",
+     "date": "02/15/2026",
+     "vs": "Lions Cricket",
+     "result": "W",
+     "pos": 0,
+     "runs": null,
+     "notOut": false,
+     "balls": 0,
+     "sr": "0.00",
+     "fours": 0,
+     "sixes": 0,
+     "matchId": 749,
+     "dnb": true
+    },
+    {
+     "series": "Africa Cup Season 4 u/11 2026",
+     "date": "02/08/2026",
+     "vs": "Rhinos Cricket",
+     "result": "W",
+     "pos": 5,
+     "runs": 13,
+     "notOut": true,
+     "balls": 10,
+     "sr": "130.00",
+     "fours": 1,
+     "sixes": 1,
+     "matchId": 723
+    },
+    {
+     "series": "Africa Cup Season 4 u/11 2026",
+     "date": "02/01/2026",
+     "vs": "Raptors Cricket White",
+     "result": "W",
+     "pos": 1,
+     "runs": 18,
+     "notOut": false,
+     "balls": 15,
+     "sr": "120.00",
+     "fours": 4,
+     "sixes": 0,
+     "matchId": 717
+    },
+    {
+     "series": "Africa Cup Season 4 u/11 2026",
+     "date": "01/25/2026",
+     "vs": "Stallions Cricket",
+     "result": "W",
+     "pos": 1,
+     "runs": 102,
+     "notOut": true,
+     "balls": 72,
+     "sr": "141.67",
+     "fours": 16,
+     "sixes": 2,
+     "matchId": 704
+    },
+    {
+     "series": "Africa Cup Season 3 U/11 2025 - PLATINUM TROPHY",
+     "date": "02/28/2025",
+     "vs": "Randfontein Cricket Club",
+     "result": "L",
+     "pos": 2,
+     "runs": 40,
+     "notOut": true,
+     "balls": 49,
+     "sr": "81.63",
+     "fours": 4,
+     "sixes": 1,
+     "matchId": 560
+    },
+    {
+     "series": "Africa Cup Season 3 U/11 2025 - PLATINUM TROPHY",
+     "date": "01/19/2025",
+     "vs": "Super Kings Cricket Club",
+     "result": "W",
+     "pos": 0,
+     "runs": null,
+     "notOut": false,
+     "balls": 0,
+     "sr": "0.00",
+     "fours": 0,
+     "sixes": 0,
+     "matchId": 469,
+     "dnb": true
+    },
+    {
+     "series": "Africa Cup Season 2 U/9 2024",
+     "date": "02/25/2024",
+     "vs": "RANDBURG RAPTORS BLUE",
+     "result": "L",
+     "pos": 5,
+     "runs": 1,
+     "notOut": false,
+     "balls": 4,
+     "sr": "25.00",
+     "fours": 0,
+     "sixes": 0,
+     "matchId": 340
+    },
+    {
+     "series": "Africa Cup Season 2 U/9 2024",
+     "date": "02/04/2024",
+     "vs": "SA ACADEMY 1",
+     "result": "W",
+     "pos": 1,
+     "runs": 18,
+     "notOut": false,
+     "balls": 23,
+     "sr": "78.26",
+     "fours": 3,
+     "sixes": 0,
+     "matchId": 283
+    },
+    {
+     "series": "Africa Cup Season 2 U/9 2024",
+     "date": "01/28/2024",
+     "vs": "RANDBURG RAPTORS BLUE",
+     "result": "L",
+     "pos": 4,
+     "runs": 0,
+     "notOut": false,
+     "balls": 5,
+     "sr": "0.00",
+     "fours": 0,
+     "sixes": 0,
+     "matchId": 260
+    },
+    {
+     "series": "Africa Cup Season 2 U/9 2024",
+     "date": "01/21/2024",
+     "vs": "MIDRAND SPORTS ACADEMY",
+     "result": "L",
+     "pos": 7,
+     "runs": 7,
+     "notOut": false,
+     "balls": 13,
+     "sr": "53.85",
+     "fours": 1,
+     "sixes": 0,
+     "matchId": 257
+    },
+    {
+     "series": "Invitational Games",
+     "date": "08/25/2024",
+     "vs": "WESTERN WARRIORS",
+     "result": "T",
+     "pos": 1,
+     "runs": 7,
+     "notOut": false,
+     "balls": 8,
+     "sr": "87.50",
+     "fours": 1,
+     "sixes": 0,
+     "matchId": 384
+    },
+    {
+     "series": "Invitational Games",
+     "date": "08/18/2024",
+     "vs": "Hero Sports",
+     "result": "W",
+     "pos": 2,
+     "runs": 51,
+     "notOut": true,
+     "balls": 28,
+     "sr": "182.14",
+     "fours": 9,
+     "sixes": 1,
+     "matchId": 382
+    },
+    {
+     "series": "Invitational Games",
+     "date": "08/18/2024",
+     "vs": "Randburg White",
+     "result": "L",
+     "pos": 0,
+     "runs": null,
+     "notOut": false,
+     "balls": 0,
+     "sr": "0.00",
+     "fours": 0,
+     "sixes": 0,
+     "matchId": 383,
+     "dnb": true
+    },
+    {
+     "series": "Invitational Games",
+     "date": "07/21/2024",
+     "vs": "ZOO LAKE CRICKET ACADEMY",
+     "result": "W",
+     "pos": 1,
+     "runs": 51,
+     "notOut": true,
+     "balls": 35,
+     "sr": "145.71",
+     "fours": 8,
+     "sixes": 1,
+     "matchId": 375
+    },
+    {
+     "series": "Invitational Games",
+     "date": "07/07/2024",
+     "vs": "OLD ED'S U/9",
+     "result": "W",
+     "pos": 1,
+     "runs": 12,
+     "notOut": false,
+     "balls": 21,
+     "sr": "57.14",
+     "fours": 1,
+     "sixes": 0,
+     "matchId": 371
+    },
+    {
+     "series": "Invitational Games",
+     "date": "04/21/2024",
+     "vs": "ZOO LAKE CRICKET ACADEMY",
+     "result": "W",
+     "pos": 0,
+     "runs": null,
+     "notOut": false,
+     "balls": 0,
+     "sr": "0.00",
+     "fours": 0,
+     "sixes": 0,
+     "matchId": 360,
+     "dnb": true
+    }
+   ],
+   "matchWise_note": "All 5 series, transcribed from the cricclubs per-match records pages (Oct 2026); each series cross-checked against its aggregate totals. W/L = Keyaan's team. T = No Winner."
   },
   "NationalPremierLeague": {
    "club": "National Premier League SA",
@@ -1667,7 +2128,7 @@
      "notOuts": 0,
      "runs": 10,
      "balls": 11,
-     "avg": 5.0,
+     "avg": 5,
      "sr": 90.91,
      "hs": 9,
      "hundreds": 0,
@@ -1753,8 +2214,8 @@
      "notOuts": 0,
      "runs": 0,
      "balls": 2,
-     "avg": 0.0,
-     "sr": 0.0,
+     "avg": 0,
+     "sr": 0,
      "hs": 0,
      "hundreds": 0,
      "fifties": 0,
