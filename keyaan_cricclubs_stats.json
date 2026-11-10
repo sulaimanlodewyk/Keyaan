@@ -1394,9 +1394,9 @@
    "100b_yearWise": [
     {
      "year": 2026,
-     "m": 3,
-     "r": 33,
-     "hs": 16
+     "m": 5,
+     "r": 56,
+     "hs": 23
     },
     {
      "year": 2025,
@@ -1404,29 +1404,55 @@
      "r": 128,
      "hs": 55
     }
-   ]
+   ],
+   "100b_stale": "cricclubs aggregate as of last export — predates 10/31 & 11/01 matches (4s/6s for those innings unknown)"
   },
   "matchWise": [
+   {
+    "date": "11/01/2026",
+    "vs": "Irish CA",
+    "runs": 0,
+    "balls": 0,
+    "sr": "0.00",
+    "result": "W"
+   },
+   {
+    "date": "10/31/2026",
+    "vs": "Pitch Perfect",
+    "runs": 23,
+    "balls": 30,
+    "sr": "76.67",
+    "result": "L"
+   },
    {
     "date": "10/25/2026",
     "vs": "Club44",
     "runs": 2,
     "dismissedBy": "Michael Wilkinson",
-    "outType": "b"
+    "outType": "b",
+    "balls": 7,
+    "sr": "28.57",
+    "result": "L"
    },
    {
     "date": "10/23/2026",
     "vs": "Raptors Blue",
     "runs": 15,
     "dismissedBy": "Aarav Purohit",
-    "outType": "ct"
+    "outType": "ct",
+    "balls": 8,
+    "sr": "187.50",
+    "result": "L"
    },
    {
     "date": "10/17/2026",
     "vs": "Old Eds (de Kock)",
     "runs": 16,
     "dismissedBy": "Aden Nikel Nikel",
-    "outType": "b"
+    "outType": "b",
+    "balls": 11,
+    "sr": "145.45",
+    "result": "W"
    },
    {
     "date": "10/19/2025",
@@ -1484,7 +1510,18 @@
     "dismissedBy": "Taylen Viljoen",
     "outType": "b"
    }
-  ]
+  ],
+  "fielding": {
+   "matches": 5,
+   "catches": 0,
+   "wkCatches": 1,
+   "directRO": 1,
+   "indirectRO": 0,
+   "stumpings": 2,
+   "total": 4,
+   "points": 44,
+   "note": "100-ball league fielding points table, as of 11/01/2026 (5 matches)"
+  }
  },
  "seriesRecords": {
   "Coverdrivecricketschool": {
